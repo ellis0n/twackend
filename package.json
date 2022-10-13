@@ -1,0 +1,14 @@
+{
+  "name": "dealbot",
+  "version": "1.0.0",
+  "description": "rate kijiji posts",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "glen may",
+  "license": "ISC",
+  "dependencies": {
+    "kijiji-scraper": "^6.3.0"
+  }
+}
