@@ -5,9 +5,9 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  margin: 2rem;
   text-align: center;
   max-width: 100%;
+  margin: 0% 12%;
 }
 
 h1 {
@@ -15,35 +15,89 @@ h1 {
 }
 
 .banner {
+  min-height: 2vh;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  font-family: helvetica;
-  font-size: 2rem;
-  border: 2px solid black;
-  margin: 10%;
-}
-
-.banner:hover {
+  font-size: calc(30px + 5vmin);
+  max-width: 100%;
+  border: 4px solid beige;
+  border-radius: 12px;
+  margin: 2% 2%;
+  padding: 10px 10px;
   background-color: black;
   color: white;
 }
 
-.ad {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  padding: 2%;
-  display: flex;
-  border: 2px solid black;
+
+.banner:hover {
+  background-color: grey;
+  color: white;
 }
 
-.ad img {
-  width: 20%;
-  height: 20%;
+.ad {
+  /* font-size: calc(60px + 6vmin); */
+  margin: 2% auto;
+  overflow: hidden;
+  border: 2px solid black;
+  width: 100%;
+  height: auto;
+  background-color: rgba(0, 0, 0, 0.238);
 }
+
 
 .ad_descrip {
-  padding-left: 20%;
-  padding-top: 20%;
-  padding-right: 20%;
+  font-size: 12px;
+  text-align:justify;
+}
+
+.img_wrapper{
+  display: flex;
+  justify-content: center;
+  width: 200px;
+}
+
+img{
+width: 8rem;
+}
+
+.ad p{
+  margin: 2rem;
+  border: 2px solid black;
+  padding: 2rem;
+}
+
+
+button{
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  padding: 20px;
+}
+
+.yes{
+  color: black;
+  border: 2px solid black;
+  padding: 2px 20px;
+  border-radius: 20px;
+  background-color: gold ;
+}
+
+.no{
+  color: black;
+  border: 2px solid black;
+  padding: 2px 20px;
+  border-radius: 20px;
+  background-color: red;
+}
+
+.vote_wrapper{
+  display: flex; 
+  justify-content: center;
+  : 2px;
 }
