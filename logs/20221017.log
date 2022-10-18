@@ -1,0 +1,42 @@
+20221017	19:44:14	5d2361d3-d2e1-4aee-83be-9ee2247d696a	GET	undefined	/
+
+20221017	19:44:14	fc0f82be-3336-4070-a57c-6cc2ea6b7a33	GET	undefined	/img/amp.jpg
+
+20221017	19:44:14	36533eea-6a4c-4a98-b62b-b63a64861686	GET	undefined	/css/style.css
+
+20221017	20:14:55	6a967f60-4e75-40d3-aa32-8eadafec6446	GET	undefined	/ads
+
+20221017	20:27:14	74841118-6284-48f0-b61a-6d2a415cfe97	GET	undefined	/ads
+
+20221017	20:27:55	dbeb0b40-c61c-4b52-8867-5b5defff7b28	GET	undefined	/ads/
+
+20221017	20:28:13	b544f77e-10db-4554-b164-bdf0502e8554	POST	undefined	/ads
+
+20221017	20:28:13	94c295ef-6c3e-4d02-a4d8-3462a2f2a3e1	TypeError: data.setAds is not iterable
+
+20221017	20:28:29	56b222bc-f281-4c5e-80a6-7bf2944083d2	GET	undefined	/ads/
+
+20221017	20:28:30	497a9e1b-5f54-4dd8-81f7-3f68c7ea52c9	GET	undefined	/ads/
+
+20221017	20:29:22	6cf7ae83-d6c8-47f9-ba5b-13c429e3e0ea	GET	undefined	/ads/
+
+20221017	20:31:22	40811109-8cf1-4495-96c7-e035712003c1	POST	undefined	/ads
+
+20221017	20:31:22	aeddc3a4-6d63-4fb5-a354-9e8f9feb36ad	TypeError: data.setAds is not iterable
+
+20221017	20:33:30	bf79f26e-d72a-4016-a2c5-ade8f047fa1c	POST	undefined	/ads
+
+20221017	20:33:33	4ac4234b-ad2f-41e3-a1c4-bd87e065567d	GET	undefined	/ads
+
+20221017	20:35:15	8ff93de5-9207-4deb-b873-58f04ca48849	PUT	undefined	/ads
+
+20221017	20:35:15	3150180c-a677-48d5-a982-4213e33f825a	ReferenceError: employee is not defined
+
+20221017	20:35:32	0a1ebb21-5289-483f-bd8c-00a73465cbcd	PUT	undefined	/ads
+
+20221017	20:36:06	fb7d2c7e-6824-4b02-8543-9f2164762536	DELETE	undefined	/ads
+
+20221017	20:36:12	b2b113f8-c78d-4a60-812d-43080f53890b	DELETE	undefined	/ads
+
+20221017	20:36:14	b96181f7-c4e5-4e8d-9128-e1bd0e056834	GET	undefined	/ads
+
