@@ -4,7 +4,7 @@ const adController = require('../../controllers/adController')
 
 router.route('/')
     .get(adController.getAllAds)
-    .post(adController.createNewAd)
+    .post(adController.createNewAd) 
     .put(adController.updateAd)
     .delete(adController.deleteAd);
     

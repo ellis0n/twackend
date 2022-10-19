@@ -4,6 +4,20 @@ const data = {
     setAds: function (data) {this.ads = data}
 };
 
+const getAd = (req,res)=>{
+    scrape // FIXME: Dev mode off
+    const ad = data.ads[1]
+    if(!ad){
+        return res.status(400).json({"message": `Ad Id ${req.body.id} not found`})
+    }
+    res.json(ad);
+};
+
+const getAllAds = (req,res)=>{
+    res.json(data.ads);
+};
+
+
 const createNewAd=(req,res)=>{
     const newAd = {
         id: data.ads[data.ads.length-1].id,
@@ -17,11 +31,6 @@ const createNewAd=(req,res)=>{
     data.setAds([...data.ads, newAd])
     res.status(201).json(data.ads)
 }
-
-// Get
-const getAllAds = (req,res)=>{
-    res.json(data.ads);
-};
 
 //Put
 const updateAd = (req,res)=>{
@@ -37,7 +46,7 @@ const updateAd = (req,res)=>{
     res.json(data.ads)
 }
 
-//Delete
+// Delete
 const deleteAd = (req,res)=>{
     const ad = data.ads.find(ad =>ad.id === parseInt(req.body.id));
     if (!ad) {
@@ -48,18 +57,11 @@ const deleteAd = (req,res)=>{
      res.json(data.ads);
 };
 
-const getAd = (req,res)=>{
-    const ad = data.ads[0]
-    if(!ad){
-        return res.status(400).json({"message": `Ad Id ${req.body.id} not found`})
-    }
-    res.json(ad);
-};
 
 module.exports = {
     getAd,
+    getAllAds,
+    createNewAd,
     deleteAd,
     updateAd,
-    getAllAds,
-    createNewAd
 }

@@ -1,23 +1,22 @@
 const kijiji = require("kijiji-scraper")
 const fs = require("fs")
 
-// locations.ts file for ids 
-// TODO: customize params
+let adArray = [];
+
+// TODO: user paramter input
 const params = {
   locationId: 9008,
   categoryId: 17, 
   sortByName: "dateDesc", 
 };
 
-let adArray = [];
-
 kijiji
   .search(params)
   .then((ads) => {
-    for (let i = 1; i > 0; i--) {
+    for (let i = 10; i > 0; i--) {
       let newAd = []
       let ad = ads[i]; // TODO: destructure?
-      newAd = {id: ad.id, img: ad.image, title: ad.title, price: ad.attributes.price, url: ad.url}
+      newAd = {id: ad.id, img: ad.image, title: ad.title, price: ad.attributes.price, url: ad.url, desc: ad.description}
       adArray.push(newAd)
     }
     const jsonString = JSON.stringify(adArray)
