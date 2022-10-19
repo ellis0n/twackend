@@ -1,3 +1,4 @@
+const scrape = require("./scrape")
 const data = {
     ads: require('../model/ads.json'),
     setAds: function (data) {this.ads = data}
@@ -5,12 +6,13 @@ const data = {
 
 const createNewAd=(req,res)=>{
     const newAd = {
-        id: data.ads[data.ads.length-1].id+1 || 1,
-        firstName: req.body.firstName,
-        lastName: req.body.lastName
+        id: data.ads[data.ads.length-1].id,
+        img: data.ads[data.ads.length-1].img,
+        title: data.ads[data.ads.length-1].title,
+        price: data.ads[data.ads.length-1].price
     }
-    if (!newAd.firstName || !newAd.lastName){
-        return res.status(400).json({'message': 'First and last names required.'})
+    if (!newAd.title || !newAd.price){
+        return res.status(400).json({'message': 'Bum ad...'})
     }
     data.setAds([...data.ads, newAd])
     res.status(201).json(data.ads)
@@ -47,7 +49,7 @@ const deleteAd = (req,res)=>{
 };
 
 const getAd = (req,res)=>{
-    const ad = data.ads.find(ad=>ad.id === parseInt(req.params.id));
+    const ad = data.ads[0]
     if(!ad){
         return res.status(400).json({"message": `Ad Id ${req.body.id} not found`})
     }

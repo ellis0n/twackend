@@ -1,0 +1,80 @@
+20221018	20:40:38	3ca6cc16-9df1-4ff8-b7d7-63c6956d0a2e	GET	undefined	/ads
+
+20221018	20:40:44	047d594a-3cab-4ee0-bb5e-d3e88223c8ef	GET	undefined	/ads
+
+20221018	20:40:47	7247c525-1430-469b-bf7a-985086d9a97f	GET	undefined	/ads
+
+20221018	20:41:03	056227d2-f326-4343-8d79-586d9f0692f6	DELETE	undefined	/ads
+
+20221018	20:41:14	8b5e3f2c-8f9b-4b27-a5e4-cb8b18e98cb1	DELETE	undefined	/ads
+
+20221018	20:41:22	1b0be914-80b2-41d4-9355-0cb67d3c8543	DELETE	undefined	/ads
+
+20221018	20:41:24	0d6e33c3-5e81-416c-bb45-664139dc6529	GET	undefined	/ads
+
+20221018	20:41:26	c30cf6b5-399d-4062-9162-54f033d416ff	GET	undefined	/ads
+
+20221018	20:41:44	f3f22495-0aa0-44a7-80fd-189420bd6399	GET	undefined	/ads/
+
+20221018	20:41:47	2500afd9-59a7-4b71-8224-8651e295e7e9	GET	undefined	/ads/
+
+20221018	20:41:48	419d49d9-7cbf-4abe-9310-4be07884c476	GET	undefined	/ads/
+
+20221018	20:41:49	b2895eba-39a6-440d-9cc4-9a2ae9a02654	GET	undefined	/ads/
+
+20221018	20:41:49	480b6e82-d9f7-4fe7-a4d4-0058251839af	GET	undefined	/ads/
+
+20221018	20:41:50	8519e9a0-5191-438e-b4d3-d719e603d230	GET	undefined	/ads/
+
+20221018	20:41:52	9a8c09a9-8fc0-4712-abc8-b8e11aa3e16c	GET	undefined	/ads
+
+20221018	20:41:56	6797e1db-18f8-400c-b64d-477d2bcdce54	GET	undefined	/
+
+20221018	20:41:56	8c57f832-78ee-4bbc-9fae-10a70b2ca847	GET	undefined	/css/style.css
+
+20221018	20:41:56	afd4e66d-5fe1-40d1-92e8-18745ccff123	GET	undefined	/img/amp.jpg
+
+20221018	21:16:31	f04bae7c-35b2-4b70-9d23-717ee257f9b7	GET	undefined	/ad
+
+20221018	21:16:38	e0075a99-8c5c-40bb-9319-a8fb2fc1073f	GET	undefined	/ads
+
+20221018	21:18:28	3c1013a0-7723-42ab-a658-17ce76a51115	GET	undefined	/
+
+20221018	21:18:28	8071e25e-ebeb-4f50-b54e-3a8c4fe605c7	TypeError: scrape is not a function
+
+20221018	21:19:34	0265081f-3db8-46a6-8011-4960d4c4181a	GET	undefined	/
+
+20221018	21:19:34	9aacdc35-3019-489a-97d0-ffea4a0a01bb	GET	undefined	/css/style.css
+
+20221018	21:19:34	296ab853-ef22-4e50-903c-7ecfdfd9cb8f	GET	undefined	/img/amp.jpg
+
+20221018	21:20:25	795f958d-a015-4c19-a98e-bbd1fff30a12	GET	undefined	/
+
+20221018	21:20:25	8da8437e-17e8-44bd-bf16-cae28394c2ad	GET	undefined	/css/style.css
+
+20221018	21:20:25	056f538a-c5a3-43f6-a50c-9940525e3774	GET	undefined	/img/amp.jpg
+
+20221018	21:20:28	f23991b7-a89f-45d9-a619-f87f9f6024f3	GET	undefined	/
+
+20221018	21:20:28	7c940749-673e-42c3-b7bc-115b6e0f8822	GET	undefined	/css/style.css
+
+20221018	21:20:28	7f2b75c8-4fae-452d-ae3c-d93d68399ef4	GET	undefined	/img/amp.jpg
+
+20221018	21:20:30	6acea1b9-6a10-4d45-be17-f661c2f5754b	GET	undefined	/
+
+20221018	21:20:30	cb447cd9-f470-4b31-9b9c-74a53bcc6520	GET	undefined	/css/style.css
+
+20221018	21:20:30	3ee00e93-e5a8-453c-9a58-d661ee9d0c33	GET	undefined	/img/amp.jpg
+
+20221018	21:20:31	3b299867-1384-49b1-badb-47588207f1af	GET	undefined	/
+
+20221018	21:20:31	7aa18c75-d865-4fd9-87d5-e14fe8fecbd3	GET	undefined	/img/amp.jpg
+
+20221018	21:20:31	244cc3f2-f00e-4af9-93ec-da3de86db0af	GET	undefined	/css/style.css
+
+20221018	21:21:53	cabe17a2-d5a2-47a9-83db-604f55d37fff	GET	undefined	/
+
+20221018	21:21:53	9cafb3b1-19d0-45e9-8a1d-8b1cf5d39e00	GET	undefined	/css/style.css
+
+20221018	21:21:53	23324281-19e8-4cb1-b03e-a877e115324a	GET	undefined	/img/amp.jpg
+
