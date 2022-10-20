@@ -6,7 +6,9 @@ const PORT = process.env.PORT || 3500;
 const cors = require("cors")
 const corsOptions = require("./config/corsOptions")
 const errorHandler = require('./middleware/errorHandler')
+const scrape = require('./controllers/scrape')
 
+app.all(scrape)
 app.use(logger)
 app.use(cors(corsOptions))
 

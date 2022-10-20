@@ -6,10 +6,11 @@ router.route('/')
     .get(adController.getAllAds)
     .post(adController.createNewAd) 
     .put(adController.updateAd)
-    .delete(adController.deleteAd);
-    
-    
-router.route('/:id')
+    .delete(adController.deleteAd)
     .get(adController.getAd);
+    
+    
+// router.route('/:id')
+//     .get(adController.getAd);
 
 module.exports = router;

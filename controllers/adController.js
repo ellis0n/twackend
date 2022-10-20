@@ -1,4 +1,4 @@
-const scrape = require("./scrape");
+const {scrape} = require("./scrape");
 const data = {
   ads: require("../model/ads.json"),
   setAds: function (data) {
@@ -6,8 +6,15 @@ const data = {
   },
 };
 
+
+const getAllAds = (req, res) => {
+  scrape;
+  return(
+  res.json(data.ads));
+};
+
+
 const getAd = (req, res) => {
-  scrape; // FIXME: Dev mode off
   const ad = data.ads[0];
   if (!ad) {
     return res.status(400).json({ message: `Ad Id ${req.body.id} not found` });
@@ -15,9 +22,6 @@ const getAd = (req, res) => {
   res.json(ad);
 };
 
-const getAllAds = (req, res) => {
-  res.json(data.ads);
-};
 
 const createNewAd = (req, res) => {
   const newAd = {
