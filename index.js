@@ -1,12 +1,14 @@
 const express = require("express");
 const app = express();
 const path = require("path");
-const { logger } = require("./middleware/logEvents");
+//Set Port to 3500
 const PORT = process.env.PORT || 3500;
+//Cors
 const cors = require("cors");
 const corsOptions = require("./config/corsOptions");
+//Middleware
+const {logger} = require("./middleware/logEvents");
 const errorHandler = require("./middleware/errorHandler");
-const scrape = require("./controllers/scrape");
 
 app.use(logger);
 app.use(cors(corsOptions));
@@ -17,9 +19,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 // SERVE STATIC FILES
 app.use("/", express.static(path.join(__dirname, "/public")));
+
+// Routes:
 app.use("/", require("./routes/root"));
 app.use("/ads", require("./routes/api/ads"));
-app.use("/scrape", require("./routes/api/ads"));
+app.use("/scrape", require("./routes/api/scrapi"));
+app.use("/register", require("./routes/api/register"));
+app.use("/auth", require("./routes/api/auth"));
 
 app.all("*", (req, res) => {
   res.status(404);

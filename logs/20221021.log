@@ -1,0 +1,190 @@
+20221021	00:04:37	39cd6710-1b79-4fe8-8aa3-7c93f1578201	OPTIONS	http://localhost:3000	/ads
+
+20221021	00:04:37	3df72659-48c2-40e2-9582-e580b2390cd1	DELETE	http://localhost:3000	/ads
+
+20221021	00:04:42	3e7241ca-75d9-4b22-a2fd-8acb5e0bc811	OPTIONS	http://localhost:3000	/ads
+
+20221021	00:04:42	15847ce8-5ef2-479a-8c54-d7e9792cdab4	DELETE	http://localhost:3000	/ads
+
+20221021	00:04:45	4e5a9555-4986-4f73-aa1f-6b02dde5120a	GET	http://localhost:3000	/ads
+
+20221021	00:04:47	8658a643-56b5-4672-8257-995f7fda3fb3	DELETE	http://localhost:3000	/ads
+
+20221021	00:04:48	23f08292-ef93-4690-b0b3-bb21b28a801e	OPTIONS	http://localhost:3000	/ads
+
+20221021	00:04:48	4857deb2-18aa-4c59-b8ce-0e0201640f83	DELETE	http://localhost:3000	/ads
+
+20221021	00:04:49	7b33dd64-2482-4558-a4b8-52d041762d68	DELETE	http://localhost:3000	/ads
+
+20221021	00:08:01	e8aef14b-3c09-4189-ac82-0bd80bba969f	GET	http://localhost:3000	/ads
+
+20221021	00:08:02	12954fbf-f74f-470e-9ad7-86fb852c5c57	OPTIONS	http://localhost:3000	/ads
+
+20221021	00:08:02	7a33060f-4f73-4e9e-ad26-48ad19a20eda	DELETE	http://localhost:3000	/ads
+
+20221021	00:08:18	2b8e86ef-c40f-4693-857a-452c3b602d5a	OPTIONS	http://localhost:3000	/ads
+
+20221021	00:08:18	d519d81c-d3a9-4e6b-af1e-73d545336ecf	DELETE	http://localhost:3000	/ads
+
+20221021	00:08:18	e93145b7-8139-4832-9a72-3e09ea7e1201	DELETE	http://localhost:3000	/ads
+
+20221021	00:08:22	5f9d42b8-750e-4923-8866-f0424d29c6ae	GET	http://localhost:3000	/ads
+
+20221021	00:08:24	2d2f0bf7-0778-4da0-8951-4d3f27f8aa6e	OPTIONS	http://localhost:3000	/ads
+
+20221021	00:08:24	c7a85039-8ba6-4ed4-9000-e806fd2faa9a	DELETE	http://localhost:3000	/ads
+
+20221021	00:11:33	65953928-957a-4369-a126-0b351e1c2ccc	OPTIONS	http://localhost:3000	/ads
+
+20221021	00:11:33	826f2120-f748-49a9-b720-51e1ee1911b5	DELETE	http://localhost:3000	/ads
+
+20221021	00:11:58	b4e86bd4-dfef-4779-9156-3ca6c8fa7c57	OPTIONS	http://localhost:3000	/ads
+
+20221021	00:11:58	6f8d5617-3e09-4fd9-a3e1-5a8fbb200210	DELETE	http://localhost:3000	/ads
+
+20221021	00:12:00	661d35a9-482e-44f5-98d9-f389e143def8	DELETE	http://localhost:3000	/ads
+
+20221021	00:12:12	07beb80a-8535-4e77-a636-76e0c7fb84f2	OPTIONS	http://localhost:3000	/ads
+
+20221021	00:12:12	a1e52031-2f32-4770-814c-fa97a7262438	DELETE	http://localhost:3000	/ads
+
+20221021	00:12:36	089c9a03-9ce5-4bd1-9e32-77e45b084c8a	OPTIONS	http://localhost:3000	/ads
+
+20221021	00:12:36	d6580255-d580-41d5-b37a-b0b379419934	DELETE	http://localhost:3000	/ads
+
+20221021	00:12:56	27b17070-9845-4593-80fe-5ed9c81956f6	OPTIONS	http://localhost:3000	/ads
+
+20221021	00:12:56	ca207428-8a82-44de-b65e-116aba50f799	DELETE	http://localhost:3000	/ads
+
+20221021	00:12:57	815a8fda-5979-426d-bdad-c06b8b9921f5	DELETE	http://localhost:3000	/ads
+
+20221021	00:14:10	e75ab474-6cc3-431b-8a73-cbb43a925715	OPTIONS	http://localhost:3000	/ads
+
+20221021	00:14:10	2ad7715b-2915-4e0a-9f5a-4c39238fa280	DELETE	http://localhost:3000	/ads
+
+20221021	00:14:13	64b84dfd-7b2f-4736-8437-4d261ae03a8a	DELETE	http://localhost:3000	/ads
+
+20221021	00:14:14	b49b04b9-3a5b-40f1-a8ff-2a9210bcc90e	DELETE	http://localhost:3000	/ads
+
+20221021	00:14:14	0b4748a9-53ac-4e4f-9202-f372ab05dff5	GET	http://localhost:3000	/ads
+
+20221021	00:14:53	801ff869-11d9-475c-89d2-9060d76bd1d0	OPTIONS	http://localhost:3000	/ads
+
+20221021	00:14:53	e51bdc64-4327-4d60-a692-fdfb6476dda9	DELETE	http://localhost:3000	/ads
+
+20221021	00:16:40	2acaaf8e-7ff7-4787-8770-3b6340625b2e	OPTIONS	http://localhost:3000	/ads
+
+20221021	00:16:40	78fd5563-6c7b-41f2-b803-38c2d860a3f9	DELETE	http://localhost:3000	/ads
+
+20221021	00:16:40	5e84c672-376e-42b2-b132-d99ff91cc4d0	ReferenceError: newData is not defined
+
+20221021	00:17:08	6f996e77-36f7-4256-bf5b-2137f2445df3	OPTIONS	http://localhost:3000	/ads
+
+20221021	00:17:08	ecf0da32-e006-458d-8610-1b8f73eb61aa	DELETE	http://localhost:3000	/ads
+
+20221021	00:17:08	97e338b5-e955-4ccc-8d07-b1813597d46a	ReferenceError: newData is not defined
+
+20221021	00:18:08	ee7f54d7-bc4c-44d0-ab27-09988c914499	OPTIONS	http://localhost:3000	/ads
+
+20221021	00:18:08	a3dab264-9eb1-458a-88e6-425bf195ad3e	DELETE	http://localhost:3000	/ads
+
+20221021	00:18:12	2ea3fe35-7db0-4d36-bf1a-1fa998335b15	DELETE	http://localhost:3000	/ads
+
+20221021	00:18:16	938a8fc9-cbfa-425e-b84b-3d8c73336474	GET	http://localhost:3000	/ads
+
+20221021	00:18:48	e0e7a160-91ff-48d4-b405-d1a3ebd7faf6	OPTIONS	http://localhost:3000	/ads
+
+20221021	00:18:48	9878db0d-1400-43d1-b8a5-d719a1715fb2	DELETE	http://localhost:3000	/ads
+
+20221021	00:19:22	90b3dc1b-ffae-4253-8fa4-a62a37907585	OPTIONS	http://localhost:3000	/ads
+
+20221021	00:19:22	1727572e-1edb-418f-ad06-2c6d600216ab	DELETE	http://localhost:3000	/ads
+
+20221021	00:19:37	94f6f27d-64e9-4845-992a-a456e2590773	OPTIONS	http://localhost:3000	/ads
+
+20221021	00:19:37	7c455ab2-ee11-4228-aae8-12a7024ccf8e	DELETE	http://localhost:3000	/ads
+
+20221021	00:19:37	bae17c6c-a7d0-4d4f-b5ce-1dedd01acfe4	DELETE	http://localhost:3000	/ads
+
+20221021	00:19:49	e926dbc6-f04e-4f30-a75b-8fc0625ced69	OPTIONS	http://localhost:3000	/ads
+
+20221021	00:19:49	0a350748-1a58-4d19-86f4-838548d6d9d8	DELETE	http://localhost:3000	/ads
+
+20221021	00:21:16	3760fdb8-ade7-4280-8825-9a2c7003ad35	OPTIONS	http://localhost:3000	/ads
+
+20221021	00:21:16	07ad2896-ec8e-489b-b4a7-1c5e84ad1d73	DELETE	http://localhost:3000	/ads
+
+20221021	00:21:17	33f461ce-4a17-47eb-baeb-de3816ed552b	DELETE	http://localhost:3000	/ads
+
+20221021	00:21:18	fd91d287-8f46-464e-9ba6-b18217e1360f	DELETE	http://localhost:3000	/ads
+
+20221021	00:21:19	8ade9d5b-8d9d-4162-bcca-4199f2503e32	GET	http://localhost:3000	/ads
+
+20221021	00:21:22	7b4f35de-3a03-424b-903b-174c63e7c01e	OPTIONS	http://localhost:3000	/ads
+
+20221021	00:21:22	2ceaaade-3125-470f-a1a1-91437dceb578	DELETE	http://localhost:3000	/ads
+
+20221021	00:22:28	a919cdcd-6df8-410f-806f-8f31c7ff9ac1	OPTIONS	http://localhost:3000	/ads
+
+20221021	00:22:28	1989da4b-d7e3-4729-a6dd-0c6f0e779c47	DELETE	http://localhost:3000	/ads
+
+20221021	00:22:30	7192b1aa-62c6-454f-a474-caaca5bfd2b6	DELETE	http://localhost:3000	/ads
+
+20221021	00:22:31	afa6c98d-be13-4b0e-8acb-562269d7c0c5	GET	http://localhost:3000	/ads
+
+20221021	00:22:32	b1d6731d-996b-4320-826e-f59d6330af0c	GET	http://localhost:3000	/ads
+
+20221021	00:22:38	7e8a2c4d-67d3-4d0d-ab8f-19ac63951084	GET	http://localhost:3000	/ads
+
+20221021	00:22:40	8cfb5171-2d14-402a-b900-13143985fa2b	GET	http://localhost:3000	/ads
+
+20221021	00:22:42	7450784f-aa76-4582-a3c5-d844ea93943d	OPTIONS	http://localhost:3000	/ads
+
+20221021	00:22:42	ef9a6d2f-87f7-48a6-be7d-58872ac6e9a2	DELETE	http://localhost:3000	/ads
+
+20221021	00:24:07	87c7064d-650e-4acb-b68d-cd1c22f6099e	OPTIONS	http://localhost:3000	/ads
+
+20221021	00:24:07	92ed2e42-5e78-4d8a-9193-8d1fe7925487	DELETE	http://localhost:3000	/ads
+
+20221021	00:24:07	e62f2473-79ce-4e09-b621-c8f183fe0b0e	TypeError: scrape is not a function
+
+20221021	00:24:20	7917bd19-3ef6-4c5c-80f6-cdb5ac1b8b89	OPTIONS	http://localhost:3000	/ads
+
+20221021	00:24:20	3bdc8d61-c0ff-453d-b2fd-e89832b5efa6	DELETE	http://localhost:3000	/ads
+
+20221021	00:24:28	bcd53e88-6365-44cf-bca1-1ff6165aed07	OPTIONS	http://localhost:3000	/ads
+
+20221021	00:24:28	06b2744c-b38b-443b-a641-63d66b53811c	DELETE	http://localhost:3000	/ads
+
+20221021	00:25:35	3e5d26fd-751d-4629-b084-4518f390c714	OPTIONS	http://localhost:3000	/ads
+
+20221021	00:25:35	2a55a035-74d0-48f4-b9d6-42b4b020271e	DELETE	http://localhost:3000	/ads
+
+20221021	00:25:59	1cbae80e-d78f-4370-b1d0-b75ec11312ac	OPTIONS	http://localhost:3000	/ads
+
+20221021	00:25:59	31342805-99d7-4bb9-9250-87e0da5fb070	DELETE	http://localhost:3000	/ads
+
+20221021	00:26:13	df639d44-77b4-48f5-a3d0-47c1d0d4de19	OPTIONS	http://localhost:3000	/ads
+
+20221021	00:26:13	0a82bc2e-b3f9-4dcc-a440-691724ab9c68	DELETE	http://localhost:3000	/ads
+
+20221021	00:26:15	99b3817f-c770-4b47-85fa-9bb1f9e1b104	DELETE	http://localhost:3000	/ads
+
+20221021	00:26:16	3cdc38b8-9430-48ab-9fe0-f1a7ac42e85a	GET	http://localhost:3000	/ads
+
+20221021	00:26:17	109b238b-8364-47fc-a3ee-db42db4a7509	DELETE	http://localhost:3000	/ads
+
+20221021	00:26:27	7b33d78e-c027-4c9b-8a8b-cf683bdff56a	OPTIONS	http://localhost:3000	/ads
+
+20221021	00:26:27	d1223570-0172-47fd-b080-9651563b6e74	DELETE	http://localhost:3000	/ads
+
+20221021	00:26:48	34fa1439-4aad-4bd8-a573-76ff44f102c2	OPTIONS	http://localhost:3000	/ads
+
+20221021	00:26:48	fa9159e2-57d5-4f4e-a435-d564d0093b96	DELETE	http://localhost:3000	/ads
+
+20221021	00:27:16	c0c7f44f-6e6c-42d3-952c-00191cce478c	OPTIONS	http://localhost:3000	/ads
+
+20221021	00:27:16	350e741a-2e2d-401f-af22-3f5219dd17d8	DELETE	http://localhost:3000	/ads
+
+20221021	00:27:18	21258ba9-bcd8-4146-9aee-03672cc6de87	GET	http://localhost:3000	/ads
+

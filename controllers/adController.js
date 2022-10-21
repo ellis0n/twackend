@@ -1,4 +1,4 @@
-const scrape = require("./scrape");
+const scrape = require("./scrapeController");
 
 const data = {
   ads: require("../model/ads.json"),
@@ -8,15 +8,16 @@ const data = {
 };
 
 const scrapeAds = (req, res) => {
+  let place = [];
   data.setAds([]);
+  let newstuff = scrape.scrape()
+  data.setAds([newstuff]);
   res.json(data.ads);
-  console.log(data.ads);
-  // scrape();
-  // res.json(data.ads); // Cant write twice in one call
 };
 
 const getAllAds = (req, res) => {
-  scrape();
+  scrape;
+  data.setAds([])
   return res.json(data.ads);
 };
 

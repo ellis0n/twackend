@@ -4,6 +4,7 @@ const fs = require("fs");
 // let adArray = [];
 
 const scrape = () => {
+  console.log("Scraping...")
   // fs.readFile("./model/ads.json", (err, data) => {
   //   if (err) {
   //     console.log(`Error reading file: ${err}`);
@@ -20,12 +21,12 @@ const scrape = () => {
   // TODO: Allow user to define parameters
   const params = {
     locationId: 9008,
-    categoryId: 17,
+    categoryId: 16,
     sortByName: "dateDesc",
   };
 
   kijiji.search(params).then((ads) => {
-    for (let i = 1; i > 0; i--) {
+    for (let i = 0; i < ads.length; i++) {
       let ad = ads[i]; // TODO: simplify
       newAdObj = {
         id: ad.id,
@@ -37,16 +38,17 @@ const scrape = () => {
         status: ad.isScraped,
       };
       adArray.push(newAdObj);
+      return adArray;
     }
-    const jsonString = JSON.stringify(adArray);
-    fs.writeFile("./model/ads.json", jsonString, (err) => {
-      if (err) {
-        console.log("Error writing file", err);
-      } else {
-        console.log("Successfully wrote file");
-      }
-      // return adArray;
-    });
+    // const jsonString = JSON.stringify(adArray);
+    // fs.writeFile("./model/ads.json", jsonString, (err) => {
+    //   if (err) {
+    //     console.log("Error writing file", err);
+    //   } else {
+    //     console.log("Successfully wrote file");
+    //   }
+    //   // return adArray;
+    // });
   });
 };
-module.exports = scrape;
+module.exports = { scrape };
