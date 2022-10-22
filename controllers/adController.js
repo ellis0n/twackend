@@ -1,4 +1,4 @@
-const scrape = require("./scrapeController");
+const {scrape} = require("../middleware/scrape");
 
 const data = {
   ads: require("../model/ads.json"),
@@ -9,16 +9,15 @@ const data = {
 
 const scrapeAds = (req, res) => {
   let place = [];
-  data.setAds([]);
-  let newstuff = scrape.scrape()
+  let newstuff = scrape()
   data.setAds([newstuff]);
   res.json(data.ads);
 };
 
 const getAllAds = (req, res) => {
-  scrape;
-  data.setAds([])
-  return res.json(data.ads);
+  // let newstuff = scrape()
+  // data.setAds([newstuff]);
+  res.json(data.ads);
 };
 
 const getAd = (req, res) => {
