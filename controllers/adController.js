@@ -18,24 +18,10 @@ const scrape = async () => {
       sortByName: "dateDesc",
     };
 
-    kijiji.search(params).then((ads) => {
-      for (let i = 0; i < ads.length; i++) {
-        let ad = ads[i];
-        newAdObj = {
-          id: ad.id,
-          img: ad.image,
-          title: ad.title.toUpperCase(),
-          price: ad.attributes.price,
-          url: ad.url,
-          desc: ad.description,
-          status: ad.isScraped,
-        };
-        adArray.push(newAdObj);
-        console.log(adArray);
-      }
-    });
-  } catch (err) {
-    throw err;
+const getAd = (req, res) => {
+  const ad = data.ads[0];
+  if (!ad) {
+    return res.status(400).json({ message: `Ad Id ${req.body.id} not found` });
   }
   return adArray;
 };
