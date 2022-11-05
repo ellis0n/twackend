@@ -7,38 +7,71 @@ const data = {
   },
 };
 
-const scrape = async () => {
-  try {
-    console.log("Scraping...");
-    let adArray = [];
 
-    const params = {
-      locationId: 9008,
-      categoryId: 16,
-      sortByName: "dateDesc",
-    };
-
-const getAd = (req, res) => {
-  const ad = data.ads[0];
-  if (!ad) {
-    return res.status(400).json({ message: `Ad Id ${req.body.id} not found` });
-  }
-  return adArray;
-};
-
-const getAllAds = async (req, res) => {
-  let newAds = await scrape;
-  const jsonString = JSON.stringify(newAds);
-  fsPromises.writeFile("./model/ads.json", jsonString, (err) => {
-    if (err) {
-      console.log("Error writing file", err);
-    } else {
-      console.log("Successfully wrote file");
+const scrape = async() => {
+  let adArray = [];
+  try{
+  console.log("Scraping...");
+  const params = {
+    locationId: 9008,
+    categoryId: 16,
+    sortByName: "dateDesc",
+  };
+  await kijiji.search(params).then((ads) => {
+    for (let i = 0; i < 1; i++) {
+      let ad = ads[i];
+      newAdObj = {
+        id: ad.id,
+        img: ad.image,
+        title: ad.title.toUpperCase(),
+        price: ad.attributes.price,
+        url: ad.url,
+        desc: ad.description,
+        status: ad.isScraped,
+      };
+      adArray.push(newAdObj);
     }
   });
-  data.setAds(newAds);
-  return res.json(data.ads);
+console.log("scrape complete")
+} catch(err){
+    throw err
+  }
+  return adArray
 };
+
+
+
+const scrapeAds = async(req, res) =>{
+
+  const ads = await scrape(); 
+
+
+  const jsonAds = JSON.stringify(ads);
+  return res.status(200).json(jsonAds);
+}
+
+// const getAd = async (req, res) => {
+//   const ad = await scrape();
+//   if (!ad) {
+//     return res.status(400).json({ message: `Ad Id } not found` });
+//   }
+//   return adArray;
+// };
+
+// const getAllAds = async (req, res) => {
+//   let newAds = await scrape;
+//   const jsonString = JSON.stringify(newAds);
+//   fsPromises.writeFile("./model/ads.json", jsonString, (err) => {
+//     if (err) {
+//       console.log("Error writing file", err);
+//     } else {
+//       console.log("Successfully wrote file");
+//     }
+//   });
+//   console.log("Glen")
+//   data.setAds(newAds);
+//   return res.status(201).json(data.ads);
+// };
 
 // const scrapeAds = (req, res) => {
 //   let place = [];
@@ -104,9 +137,9 @@ const getAllAds = async (req, res) => {
 
 module.exports = {
   // getAd,
-  getAllAds,
+  // getAllAds,
   // createNewAd,
   // deleteAd,
   // updateAd,
-  // scrapeAds,
+  scrapeAds,
 };
