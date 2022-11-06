@@ -2,7 +2,8 @@ const express = require("express");
 const router = express.Router();
 const adController = require("../../controllers/adController");
 
-router.route("/ads").get(adController.scrapeAds);
+router.route("/")
+.post(adController.scrapeAds);
 // .post(adController.createNewAd)
 // .put(adController.updateAd)
 // .delete(adController.scrapeAds)
