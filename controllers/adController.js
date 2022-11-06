@@ -1,14 +1,15 @@
 const kijiji = require("kijiji-scraper");
+const fs = require('fs');
+const fsPromises = fs.promises;
 
 // Core scraper functionality
 const scrape = async(parameters) => {
   let adArray = [];
-  console.log(parameters)
 
   try{
   const params = {
-    locationId: 9008,
-    categoryId: 16,
+    locationId: JSON.parse(parameters.location),
+    categoryId: JSON.parse(parameters.category),
     sortByName: "dateAsc",
   };
   await kijiji.search(params).then((ads) => {
@@ -24,6 +25,7 @@ const scrape = async(parameters) => {
         status: ad.isScraped,
       };
       adArray.push(newAdObj);
+
     }
   });
 } catch(err){
@@ -33,11 +35,20 @@ const scrape = async(parameters) => {
 };
 
 const scrapeAds = async(req, res) =>{
-  const ads = await scrape(req.query); 
+  console.log(req.body)
+  const ads = await scrape(req.body); 
   const jsonAds = JSON.stringify(ads);
   return res.status(200).json(jsonAds);
+};
+
+
+const saveAds = async(req, res) => {
+  console.log(req.body)
+  return res.status(200)
 }
+  // fs.writeFile(__dirname + "/model/ads.json", req.body)};
 
 module.exports = {
   scrapeAds,
+  saveAds,
 };

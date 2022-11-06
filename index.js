@@ -9,7 +9,6 @@ const corsOptions = require("./config/corsOptions");
 //Middleware
 const { logger } = require("./middleware/logEvents");
 const errorHandler = require("./middleware/errorHandler");
-const { scrape } = require("kijiji-scraper/dist/lib/scraper");
 
 app.use(logger);
 app.use(cors(corsOptions));
@@ -22,7 +21,7 @@ app.use(express.json());
 app.use("/", express.static(path.join(__dirname, "/public")));
 // Routes:
 app.use("/", require("./routes/root"));
-app.get("/ads", require("./routes/api/ads"));
+app.use("/ads", require("./routes/api/ads"));
 // app.use("/scrape", require("./routes/api/scrapi"));
 // app.use("/register", require("./routes/api/register"));
 // app.use("/auth", require("./routes/api/auth"));
