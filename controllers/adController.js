@@ -1,6 +1,5 @@
 const kijiji = require("kijiji-scraper");
 const fs = require('fs');
-const fsPromises = fs.promises;
 
 // Core scraper functionality
 const scrape = async(parameters) => {
@@ -41,14 +40,8 @@ const scrapeAds = async(req, res) =>{
   return res.status(200).json(jsonAds);
 };
 
-
-const saveAds = async(req, res) => {
-  console.log(req.body)
-  return res.status(200)
-}
   // fs.writeFile(__dirname + "/model/ads.json", req.body)};
 
 module.exports = {
   scrapeAds,
-  saveAds,
 };
