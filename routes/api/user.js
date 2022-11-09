@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const userController = require("../../controllers/userController");
+const adController = require("../../controllers/adController");
 
 
 router.route("/")
-.post(userController.saveAd);
+.post(adController.saveAd);
 
 module.exports = router;
