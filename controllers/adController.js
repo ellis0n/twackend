@@ -12,8 +12,7 @@ const scrape = async(parameters) => {
     sortByName: "dateAsc",
   };
   await kijiji.search(params).then((ads) => {
-    console.log(ads)
-    for (let i = 0; i < 1; i++) {
+    for (let i = 0; i < ads.length; i++) {
       let ad = ads[i];
       newAdObj = {
         id: ad.id,
@@ -23,6 +22,7 @@ const scrape = async(parameters) => {
         url: ad.url,
         desc: ad.description,
         status: ad.isScraped,
+        
       };
       adArray.push(newAdObj);
 
@@ -40,6 +40,7 @@ const save = async(ad) =>{
     if (error) throw error;
     let userAds = JSON.parse(data);
     userAds.push(ad);
+    
     fs.writeFile(saveFile, JSON.stringify(userAds), (error) => {
     if (error) throw error; })
     }
