@@ -1,6 +1,6 @@
 //Cross-origin resource sharing
 const whitelist = [
-  "https://www.twack.com",
+  "https://www.twack.com", // Not active
   "http://127.0.0.1:5500",
   "http://localhost:3500",
   "http://localhost:3500/",
