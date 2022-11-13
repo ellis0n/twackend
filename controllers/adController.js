@@ -22,7 +22,6 @@ const scrape = async(parameters) => {
         url: ad.url,
         desc: ad.description,
         status: ad.isScraped,
-        
       };
       adArray.push(newAdObj);
 
