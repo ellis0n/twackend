@@ -1,1 +1,7 @@
-[{"username":"glen","password":"$2b$10$sR7.OgAB99n/MpHCedAkJ.NC.CRiRURPjM25y2Sh9ySD5SxMqI83m"},{"username":"glen2","password":"$2b$10$z37oSDiJnDFbnwrvYe/IfecmMufXk9qKOJpmrYeWLFi4wDv4ZiW5m"},{"username":"glen2","password":"$2b$10$oftzrxeb6VDr/bAYclY.d.cEBX5IBmSqBPjT5Hz5lUA/h9Ywao.nm"}]
+[
+  {
+    "username": "glen",
+    "password": "$2b$10$9.YX1kk8z8WdlNncMP2CluEqmPpg8mjQ5fFT23vzvWLdWD7kCOAai",
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImdsZW4iLCJpYXQiOjE2NjkxNjA1MjIsImV4cCI6MTY2OTI0NjkyMn0._u3cr1GViatJngkg2l8vxNgnTiiNuIFvmeVRh9kKbvg"
+  }
+]
