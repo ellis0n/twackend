@@ -1,6 +1,5 @@
 const kijiji = require("kijiji-scraper");
-const fs = require("fs");
-const path = require("path");
+
 // Core scraper functionality
 const scrape = async (parameters) => {
   let adArray = [];
@@ -32,45 +31,12 @@ const scrape = async (parameters) => {
   return adArray;
 };
 
-const save = async (ad) => {
-  const saveFile = path.join(__dirname, "..", "model", "ads.json");
-  fs.readFile(saveFile, "utf-8", (error, data) => {
-    if (error) throw error;
-    let userAds = JSON.parse(data);
-    userAds.push(ad);
-
-    fs.writeFile(saveFile, JSON.stringify(userAds), (error) => {
-      if (error) throw error;
-    });
-  });
-};
-
 const scrapeAds = async (req, res) => {
   console.log(req.body);
   const ads = await scrape(req.body);
   const jsonAds = JSON.stringify(ads);
   return res.status(200).json(jsonAds);
 };
-
-const saveAd = async (req, res) => {
-  console.log(req.body);
-  const savedAd = await save(req.body).then(console.log("Ad saved."));
-  console.log;
-  return res.status(200);
-};
-
-const getAds = async (req, res) => {
-  console.log(req.body);
-  const saveFile = path.join(__dirname, "..", "model", "ads.json");
-  fs.readFile(saveFile, "utf-8", (error, data) => {
-    if (error) throw error;
-    let ads = JSON.parse(data);
-    res.status(200).json(ads);
-  });
-};
-
 module.exports = {
   scrapeAds,
-  saveAd,
-  getAds,
 };
