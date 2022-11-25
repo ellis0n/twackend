@@ -1,7 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const adController = require("../../controllers/saveController");
+const saveController = require("../../controllers/saveController");
 
-router.route("/").post(adController.saveAd).get(adController.getAllSavedAds);
+router
+  .route("/")
+  .post(saveController.saveAd)
+  .get(saveController.getAllSavedAds)
+  .put(saveController.updateVote)
+  .delete(saveController.deleteVote);
 
 module.exports = router;

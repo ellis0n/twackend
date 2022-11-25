@@ -42,7 +42,7 @@ app.use("/scrape", require("./routes/api/scrape"));
 app.use("/save", require("./routes/api/save")); // TODO: Move back under auth tokens
 
 app.use(verifyJWT); // Everything below here requires user to be verified
-app.use("/save", require("./routes/api/save")); // Save ads
+// app.use("/save", require("./routes/api/save")); // Save ads
 
 // 404
 app.all("*", (req, res) => {
