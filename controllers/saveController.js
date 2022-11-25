@@ -14,16 +14,10 @@ const saveAd = async (req, res) => {
 
 const getAllSavedAds = async (req, res) => {
   const savedAds = await Save.find();
-  if (!employees)
+  if (!savedAds)
     return res.status(204).json({ message: "No saved ads found." });
+  console.log(savedAds);
   res.json(savedAds);
-
-  const saveFile = path.join(__dirname, "..", "model", "ads.json");
-  fs.readFile(saveFile, "utf-8", (error, data) => {
-    if (error) throw error;
-    let ads = JSON.parse(data);
-    res.status(200).json(ads);
-  });
 };
 
 module.exports = {
