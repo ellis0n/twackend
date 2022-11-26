@@ -21,11 +21,11 @@ const getAllSavedAds = async (req, res) => {
 
 const updateVote = async (req, res) => {
   try {
-    const ad = await Save.findOne({ id: req.body }).exec();
+    const ad = await Save.findOne({ id: req.body.id }).exec();
     if (!ad) {
       return res.status(204).json({ message: `No ad matches ${req.body.id}` });
     }
-    ad.vote = req.body;
+    ad.vote = req.body.vote;
     const result = await ad.save();
     res.json(ad);
   } catch (err) {
@@ -34,7 +34,6 @@ const updateVote = async (req, res) => {
 };
 
 const deleteVote = async (req, res) => {
-  let deleteAd = await Save.find({ id: req.body });
   const result = await Save.deleteOne({ id: req.body });
   res.status(200).json(result);
 };
