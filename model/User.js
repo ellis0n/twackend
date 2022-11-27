@@ -18,6 +18,16 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+  params: {
+    location: {
+      type: Number,
+      default: 0
+    },
+    category: {
+      type: Number,
+      default: 0
+    },
+  },
   refreshToken: String,
 });
 
