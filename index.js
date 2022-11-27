@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const path = require("path");
@@ -9,24 +10,41 @@ const corsOptions = require("./config/corsOptions");
 //Middleware
 const { logger } = require("./middleware/logEvents");
 const errorHandler = require("./middleware/errorHandler");
+const verifyJWT = require("./middleware/verifyJWT");
+const cookieParser = require("cookie-parser");
+const credentials = require("./middleware/credentials");
+const mongoose = require("mongoose");
+const connectDB = require("./config/dbConn");
+
+// Connect to database
+connectDB();
 
 app.use(logger);
+app.use(credentials);
 app.use(cors(corsOptions));
 
 // BUILT-IN FORMDATA:
 app.use(express.urlencoded({ extended: false }));
 // BUILT-IN JSON DATA:
 app.use(express.json());
+// COOKIE MIDDLEWARE:
+app.use(cookieParser());
 // SERVE STATIC FILES
 app.use("/", express.static(path.join(__dirname, "/public")));
+
 // Routes:
 app.use("/", require("./routes/root"));
-app.use("/ads", require("./routes/api/ads"));
-app.use("/user", require("./routes/api/user"))
-// app.use("/scrape", require("./routes/api/scrapi"));
-// app.use("/register", require("./routes/api/register"));
-// app.use("/auth", require("./routes/api/auth"));
+app.use("/register", require("./routes/api/register"));
+app.use("/auth", require("./routes/api/auth"));
+app.use("/refresh", require("./routes/api/refresh"));
+app.use("/logout", require("./routes/api/logout"));
+app.use("/scrape", require("./routes/api/scrape"));
+app.use("/save", require("./routes/api/save")); // TODO: Move back under auth tokens
 
+app.use(verifyJWT); // Everything below here requires user to be verified
+// app.use("/save", require("./routes/api/save")); // Save ads
+
+// 404
 app.all("*", (req, res) => {
   res.status(404);
   if (req.accepts("html")) {
@@ -38,6 +56,11 @@ app.all("*", (req, res) => {
   }
 });
 
+// Error handler
 app.use(errorHandler);
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// Open connection to DB
+mongoose.connection.once("open", () => {
+  console.log("Connected to MongoDB database.");
+  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+});
