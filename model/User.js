@@ -18,14 +18,14 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  params: {
+  pref: {
     location: {
       type: Number,
-      default: 0
+      default: 0,
     },
     category: {
       type: Number,
-      default: 0
+      default: 0,
     },
   },
   refreshToken: String,
