@@ -3,7 +3,7 @@ const kijiji = require("kijiji-scraper");
 // Core scraper functionality
 const scrape = async (parameters) => {
   let adArray = [];
-
+console.log(parameters)
   try {
     const params = {
       locationId: JSON.parse(parameters.location),
