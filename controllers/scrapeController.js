@@ -1,6 +1,8 @@
 const kijiji = require("kijiji-scraper");
 
-// Core scraper functionality
+//  Core scraper functionality
+//  TODO:: check for user saved ads, dont return ad already voted
+
 const scrape = async (parameters) => {
   let adArray = [];
 console.log(parameters)
@@ -37,6 +39,7 @@ const scrapeAds = async (req, res) => {
   const jsonAds = JSON.stringify(ads);
   return res.status(200).json(jsonAds);
 };
+
 module.exports = {
   scrapeAds,
 };

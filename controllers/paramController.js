@@ -1,17 +1,21 @@
 const Param = require("../model/Param");
+const Save = require("../model/Save");
 
 const updateParam = async (req, res) => {
-  console.log(req)
+
   try {
-    let setting = await Param.find();
-    setting.location = req.body.location;
-    setting.category = req.body.category
-    const result = await setting.save()
+    const settings = await Param.findOne({userId: 0})
+    console.log(req.body)
+    settings.userId = settings.userId;
+    settings.location = req.body.location;
+    settings.category = req.body.category;
+    const result = await settings.save()
     res.json(result);
   }
   catch (err) {
     console.error(err);
     }
+
 };
 
 const getParam = async (req, res) => {
