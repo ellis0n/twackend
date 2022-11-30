@@ -2,6 +2,7 @@ const Save = require("../model/Save");
 
 //  POST ad once voted on
 const saveAd = async (req, res) => {
+  console.log(req.body)
   try {
     const result = await Save.create({
       ad: req.body.ad,

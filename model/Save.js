@@ -7,7 +7,7 @@ const saveSchema = new Schema({
     require: true,
   },
   vote: {
-    type: String,
+    type: Boolean,
     require: true,
   },
 });
