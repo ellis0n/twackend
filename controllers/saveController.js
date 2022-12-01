@@ -1,8 +1,9 @@
+const { Ad } = require("kijiji-scraper");
 const Save = require("../model/Save");
 
 //  POST ad once voted on
 const saveAd = async (req, res) => {
-  console.log(req.body)
+  console.log(req.body);
   try {
     const result = await Save.create({
       ad: req.body.ad,
@@ -25,13 +26,13 @@ const getAllSavedAds = async (req, res) => {
 //  PUT or update individual saved ad
 const updateVote = async (req, res) => {
   try {
-    const ad = await Save.findOne({ id: req.body.id }).exec();
+    const ad = await Save.findOne({ ad: req.body.ad }).exec();
     if (!ad) {
       return res.status(204).json({ message: `No ad matches ${req.body.id}` });
     }
     ad.vote = req.body.vote;
     const result = await ad.save();
-    res.json(ad);
+    res.status(200).json(result);
   } catch (err) {
     console.error(err);
   }
@@ -39,7 +40,7 @@ const updateVote = async (req, res) => {
 
 //  DELETE individual saved ad
 const deleteVote = async (req, res) => {
-  const result = await Save.deleteOne({ id: req.body });
+  const result = await Save.deleteOne({ ad: req.body.ad });
   res.status(200).json(result);
 };
 
