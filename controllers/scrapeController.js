@@ -12,7 +12,11 @@ const scrape = async (parameters) => {
       categoryId: JSON.parse(parameters.category),
       sortByName: "dateAsc",
     };
-    await kijiji.search(params).then((ads) => {
+    const options = {
+      minResults: 20,
+    };
+    await kijiji.search(params, options).then((ads) => {
+      console.log(ads.length);
       for (let i = 0; i < ads.length; i++) {
         let ad = ads[i];
         newAdObj = {
@@ -46,11 +50,12 @@ const filterAds = async (adArray) => {
   let newAdArray = [];
   for (let i = 0; i < adArray.length; i++) {
     let ad = adArray[i];
-    let search = await Save.findOne({ ad: ad }).exec();
+    let search = await Save.findOne({ ad: ad[i] }).exec();
     if (!search) {
       newAdArray.push(ad);
     }
   }
+  console.log(newAdArray.length);
   return newAdArray;
 };
 
@@ -58,11 +63,6 @@ const scrapeAds = async (req, res) => {
   console.log(req.body);
   const ads = await scrape(req.body);
   const jsonAds = JSON.stringify(ads);
-  if (!jsonAds) {
-    return res
-      .status(200)
-      .json({ message: "No more ads to view. Try again later!" });
-  }
   return res.status(200).json(jsonAds);
 };
 
