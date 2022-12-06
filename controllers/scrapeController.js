@@ -7,18 +7,23 @@ const Save = require("../model/Save");
 const scrape = async (parameters) => {
   let adArray = [];
   try {
+
     const params = {
       locationId: JSON.parse(parameters.location),
       categoryId: JSON.parse(parameters.category),
       sortByName: "dateAsc",
     };
+
     const options = {
       minResults: 20,
     };
+
     await kijiji.search(params, options).then((ads) => {
-      console.log(ads.length);
+      // console.log(ads.length);
+
       for (let i = 0; i < ads.length; i++) {
         let ad = ads[i];
+
         newAdObj = {
           id: ad.id,
           img: ad.image,
@@ -28,6 +33,7 @@ const scrape = async (parameters) => {
           desc: ad.description,
         };
 
+        //  find a more efficient way to filter before creating newAdObj
         if (
           Object.values(newAdObj).every(
             (value) => value !== "" && value !== undefined
@@ -35,14 +41,14 @@ const scrape = async (parameters) => {
         ) {
           adArray.push(newAdObj);
         }
+        // console.log(adArray.length)
       }
-      // console.log("HERE ARE ADS SCRAPED:");
-      // console.log(adArray);
     });
   } catch (err) {
     throw err;
   }
-  let filteredAds = await filterAds(adArray);
+  // Do this at the same time as iterating
+  const filteredAds =  filterAds(adArray);
   return filteredAds;
 };
 
@@ -50,12 +56,12 @@ const filterAds = async (adArray) => {
   let newAdArray = [];
   for (let i = 0; i < adArray.length; i++) {
     let ad = adArray[i];
-    let search = await Save.findOne({ ad: ad[i] }).exec();
+    let search = await Save.findOne({ ad: ad }).exec();
     if (!search) {
       newAdArray.push(ad);
     }
   }
-  console.log(newAdArray.length);
+  // console.log(newAdArray.length);
   return newAdArray;
 };
 
