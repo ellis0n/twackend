@@ -33,7 +33,7 @@ const scrape = async (parameters) => {
               newAdObj = {
               id: ad.id,
               img: ad.image,
-              //images: ad.imagines 
+              //images: ad.images 
               title: ad.title.toUpperCase(),
               price: ad.attributes.price,
               url: ad.url,
