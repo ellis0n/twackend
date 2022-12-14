@@ -1,9 +1,9 @@
-const { Ad } = require("kijiji-scraper");
 const Save = require("../model/Save");
 
 //  POST ad once voted on
 const saveAd = async (req, res) => {
   console.log(req.body);
+  // const check = await Save.findOne({ ad: req.body.ad }).exec;
   try {
     const result = await Save.create({
       ad: req.body.ad,
