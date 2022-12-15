@@ -37,6 +37,7 @@ app.use("/", require("./routes/root"));
 app.use("/register", require("./routes/api/register"));
 app.use("/auth", require("./routes/api/auth"));
 app.use("/refresh", require("./routes/api/refresh"));
+app.use("/login", require("./routes/api/auth"));
 app.use("/logout", require("./routes/api/logout"));
 app.use("/scrape", require("./routes/api/scrape"));
 app.use("/save", require("./routes/api/save")); // TODO: auth
