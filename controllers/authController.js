@@ -3,10 +3,10 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const handleLogin = async (req, res) => {
-   console.log(req.body, "req.body")
+  console.log(req.body, "req.body");
   const { user, pwd } = req.body;
-  console.log(user)
-  console.log(pwd)
+  console.log(user);
+  console.log(pwd);
   if (!user || !pwd)
     return res
       .status(400)
@@ -45,7 +45,7 @@ const handleLogin = async (req, res) => {
       secure: true,
       maxAge: 24 * 60 * 60 * 1000,
     });
-    res.json({ accessToken });
+    res.json({ roles, accessToken });
   } else {
     res.sendStatus(401);
   }
