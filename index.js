@@ -45,6 +45,8 @@ app.use("/pref", require("./routes/api/pref")); // TODO: users
 app.use("/users", require("./routes/api/users")); // TODO: auth
 app.use(verifyJWT); // Everything below here requires user to be verified
 // app.use("/save", require("./routes/api/save")); // Save ads
+// app.use("/refresh", require("./routes/api/refresh"));
+
 
 // 404
 app.all("*", (req, res) => {
