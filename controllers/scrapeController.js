@@ -1,6 +1,7 @@
 const kijiji = require("kijiji-scraper");
 const Save = require("../model/Save");
 
+
 //  Core scraper functionality
 //  TODO:: check for user saved ads, dont return ad already voted
 
@@ -23,7 +24,7 @@ const scrape = async (parameters) => {
 
     for (let i = 0; i < ads.length; i++) {
       let ad = ads[i];
-      console.log(ad)
+      // console.log(ad)
       let search = await Save.findOne({ 'ad.id': ad.id }).exec();
       if (!search) {{
         if (ad.image &&
@@ -42,7 +43,7 @@ const scrape = async (parameters) => {
               location: ad.attributes.location,
               isScraped: ad.isScraped()
             };
-          console.log(newAdObj)
+          // console.log(newAdObj)
           adArray.push(newAdObj);
           }
         }
