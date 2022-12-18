@@ -10,14 +10,6 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  roles: [{
-      type: String,
-      default: "User"
-    }],
-  active: {
-    type: Boolean,
-    default: true
-  }
   pref: {
     location: {
       type: Number,

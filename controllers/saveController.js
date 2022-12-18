@@ -2,6 +2,8 @@ const Save = require("../model/Save");
 
 //  POST ad once voted on
 const saveAd = async (req, res) => {
+  console.log(req.headers)
+
   console.log(req.body);
   // const check = await Save.findOne({ ad: req.body.ad }).exec;
   try {
