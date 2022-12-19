@@ -8,8 +8,7 @@ const handleRefreshToken = async (req, res) => {
 
     const foundUser = await User.findOne({ refreshToken }).exec();
     console.log(foundUser)
-    if (!foundUser) return res.sendStatus(403); //Forbidden 
-    // evaluate jwt 
+    if (!foundUser) return res.sendStatus(403);  
     jwt.verify(
         refreshToken,
         process.env.REFRESH_TOKEN_SECRET,
@@ -17,13 +16,12 @@ const handleRefreshToken = async (req, res) => {
             if (err || foundUser.username !== decoded.username) return res.sendStatus(403);
             const accessToken = jwt.sign(
                 {
-                    "UserInfo": {
-                        "username": decoded.username,
-                    }
+                    "username": decoded.username,
                 },
                 process.env.ACCESS_TOKEN_SECRET,
-                { expiresIn: '10s' }
+                { expiresIn: '1d' }
             );
+            // console.log(accessToken)
             res.json({ accessToken })
         }
     );
