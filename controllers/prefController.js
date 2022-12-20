@@ -4,7 +4,6 @@ const Save = require("../model/Save");
 const updatePref = async (req, res) => {
   try {
     const preferences = await Pref.findOne({ userId: 0 });
-    console.log(req.body);
     preferences.userId = preferences.userId;
     preferences.location = req.body.location;
     preferences.category = req.body.category;
