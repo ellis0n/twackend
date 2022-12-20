@@ -7,7 +7,7 @@ const handleRefreshToken = async (req, res) => {
     const refreshToken = cookies.jwt;
 
     const foundUser = await User.findOne({ refreshToken }).exec();
-    console.log(foundUser)
+    console.log(`foundUser: ${foundUser}`)
     if (!foundUser) return res.sendStatus(403);  
     jwt.verify(
         refreshToken,
@@ -19,12 +19,11 @@ const handleRefreshToken = async (req, res) => {
                     "username": decoded.username,
                 },
                 process.env.ACCESS_TOKEN_SECRET,
-                { expiresIn: '1d' }
+                { expiresIn: '30s'}
             );
             // console.log(accessToken)
             res.json({ accessToken })
         }
     );
 }
-
 module.exports = { handleRefreshToken }
