@@ -3,12 +3,14 @@ const Save = require("../model/Save");
 const User = require("../model/User");
 
 const updatePref = async (req, res) => {
+  let pref = req.body.pref;
+  console.log(pref);
   try {
-    const preferences = await User.findOne({ userId: 0 });
-    preferences.userId = preferences.userId;
-    preferences.location = req.body.location;
-    preferences.category = req.body.category;
-    const result = await preferences.save();
+    const user = await User.findOne({ username: req.body.user });
+    console.log(user);
+    user.pref.location = pref.location;
+    user.pref.category = pref.category;
+    const result = await user.save();
     res.json(result);
   } catch (err) {
     console.error(err);
