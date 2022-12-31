@@ -1,19 +1,50 @@
 const Save = require("../model/Save");
+const User = require("../model/User");
 
 //  POST ad once voted on
 const saveVote = async (req, res) => {
-  // const check = await Save.findOne({ ad: req.body.ad }).exec;
+  let { vote, ad } = req.body.vote;
+  let { user } = req.body;
+
   try {
-    const result = await Save.create({
-      ad: req.body.ad,
-      vote: req.body.vote,
-    });
-    res.status(201).json(result);
+    const userCheck = await User.findOne({
+      username: user,
+    }).exec();
+
+    if (vote === true) {
+      userCheck.votes.for.push(ad);
+    } else if (vote === false) {
+      userCheck.votes.against.push(ad);
+    }
+    const result = await userCheck.save();
+    console.log(result);
+
+    const saveCheck = await Save.findOne({
+      ad: ad,
+    }).exec();
+
+    let saveResult;
+
+    if (saveCheck && vote === true) {
+      saveCheck.votes.for.push(req.body.user);
+      saveResult = await saveCheck.save();
+    } else if (saveCheck && vote === false) {
+      saveCheck.votes.against.push(req.body.user);
+      saveResult = await saveCheck.save();
+    } else if (!saveResult) {
+      saveResult = await Save.create({
+        ad: req.body.vote.ad,
+        votes: {
+          for: vote === true ? [req.body.user] : [],
+          against: vote === false ? [req.body.user] : [],
+        },
+      });
+    }
+    res.status(201).json(saveResult);
   } catch (err) {
     console.error(err);
   }
 };
-
 //  GET all ads the user has voted on
 const getAllSavedAds = async (req, res) => {
   const savedAds = await Save.find();

@@ -1,17 +1,23 @@
 const kijiji = require("kijiji-scraper");
 const Save = require("../model/Save");
+const User = require("../model/User");
 
+// Scraper function
 
-//  Core scraper functionality
-//  TODO:: check for user saved ads, dont return ad already voted
+const scrapeAds = async (req, res) => {
+  console.log(req.body);
+  const ads = await scrape(req.body);
+  const jsonAds = JSON.stringify(ads);
+  return res.status(200).json(jsonAds);
+};
 
-const scrape = async (parameters) => {
+const scrape = async ({ params, user }) => {
   let adArray = [];
-  try {
 
-    const params = {
-      locationId: JSON.parse(parameters.location),
-      categoryId: JSON.parse(parameters.category),
+  try {
+    const parameters = {
+      locationId: JSON.parse(params.location),
+      categoryId: JSON.parse(params.category),
       sortByName: "dateAsc",
     };
 
@@ -19,32 +25,40 @@ const scrape = async (parameters) => {
       minResults: 20,
     };
 
-    const ads = await kijiji.search(params, options).then((scrapedAds) => { return scrapedAds });
-    // console.log(ads.length)
+    const ads = await kijiji.search(parameters, options).then((scrapedAds) => {
+      return scrapedAds;
+    });
 
     for (let i = 0; i < ads.length; i++) {
       let ad = ads[i];
-      // console.log(ad)
-      let search = await Save.findOne({ 'ad.id': ad.id }).exec();
-      if (!search) {{
-        if (ad.image &&
-            ad.attributes.price && 
-            ad.description){
+      // console.log(findUser);
+      const findUser = await User.findOne({
+        username: user,
+      }).exec();
 
+      let check = findUser ? findUser.votes.for.includes(ad.id) : false;
+      console.log(`vote for check: ${check}`);
+      if (!check) {
+        check = findUser ? findUser.votes.against.includes(ad.id) : false;
+        console.log(`vote against check: ${check}`);
+        if (!check) {
+          {
+            if (ad.image && ad.attributes.price && ad.description) {
               newAdObj = {
-              id: ad.id,
-              img: ad.image,
-              //images: ad.images 
-              title: ad.title.toUpperCase(),
-              price: ad.attributes.price,
-              url: ad.url,
-              desc: ad.description,
-              date: ad.date,
-              location: ad.attributes.location,
-              isScraped: ad.isScraped()
-            };
-          // console.log(newAdObj)
-          adArray.push(newAdObj);
+                id: ad.id,
+                img: ad.image,
+                //images: ad.images
+                title: ad.title.toUpperCase(),
+                price: ad.attributes.price,
+                url: ad.url,
+                desc: ad.description,
+                date: ad.date,
+                location: ad.attributes.location,
+                isScraped: ad.isScraped(),
+              };
+              // console.log(newAdObj)
+              adArray.push(newAdObj);
+            }
           }
         }
       }
@@ -53,15 +67,7 @@ const scrape = async (parameters) => {
   } catch (err) {
     throw err;
   }
-  return adArray
-};
-
-
-const scrapeAds = async (req, res) => {
-  console.log(req.body);
-  const ads = await scrape(req.body);
-  const jsonAds = JSON.stringify(ads);
-  return res.status(200).json(jsonAds);
+  return adArray;
 };
 
 module.exports = {

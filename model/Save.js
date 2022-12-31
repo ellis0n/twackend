@@ -6,9 +6,17 @@ const saveSchema = new Schema({
     type: Object,
     require: true,
   },
-  vote: {
-    type: Boolean,
-    require: true,
+  votes: {
+    for: {
+      type: Array,
+      require: true,
+      default: [],
+    },
+    against: {
+      type: Array,
+      require: true,
+      default: [],
+    },
   },
 });
 

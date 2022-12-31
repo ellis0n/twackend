@@ -1,5 +1,3 @@
-const Pref = require("../model/Pref");
-const Save = require("../model/Save");
 const User = require("../model/User");
 
 const updatePref = async (req, res) => {
