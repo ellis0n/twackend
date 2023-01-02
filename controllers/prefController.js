@@ -4,6 +4,7 @@ const updatePref = async (req, res) => {
   let { location, category } = req.body.pref;
   let username = req.body.user;
   console.log(location, category);
+
   try {
     const user = await User.findOne({ username: username });
     user.pref.location = location;

@@ -11,13 +11,12 @@ const saveVote = async (req, res) => {
       username: user,
     }).exec();
 
-    if (vote === true) {
-      userCheck.votes.for.push(ad);
-    } else if (vote === false) {
-      userCheck.votes.against.push(ad);
-    }
+    // if (vote === true) {
+    userCheck.votes.push(ad.id);
+    // } else if (vote === false) {
+    //   userCheck.votes.push(ad);
+    // }
     const result = await userCheck.save();
-    console.log(result);
 
     const saveCheck = await Save.findOne({
       ad: ad,

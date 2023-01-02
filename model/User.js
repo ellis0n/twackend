@@ -21,16 +21,9 @@ const userSchema = new Schema({
     },
   },
   votes: {
-    for: {
-      type: Array,
-      require: true,
-      default: [],
-    },
-    against: {
-      type: Array,
-      require: true,
-      default: [],
-    },
+    type: Array,
+    require: true,
+    default: [],
   },
   refreshToken: String,
 });
