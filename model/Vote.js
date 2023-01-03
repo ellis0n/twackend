@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const saveSchema = new Schema({
+const voteSchema = new Schema({
   ad: {
     type: Object,
     require: true,
@@ -20,4 +20,4 @@ const saveSchema = new Schema({
   },
 });
 
-module.exports = mongoose.model("Save", saveSchema);
+module.exports = mongoose.model("Ad", adSchema);

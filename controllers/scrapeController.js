@@ -1,5 +1,5 @@
 const kijiji = require("kijiji-scraper");
-const Save = require("../model/Save");
+const Ad = require("../model/Ad");
 const User = require("../model/User");
 
 // Kijiji scraper functionality
@@ -21,7 +21,6 @@ const scrape = async ({ params, user }) => {
     };
 
     const options = {
-      // To see more results, set this to a higher number. See mw-penny's repo for more info on how Kijiji returns results.
       minResults: 20,
     };
 

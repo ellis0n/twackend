@@ -1,4 +1,4 @@
-const Save = require("../model/Save");
+const Ad = require("../model/Ad");
 const User = require("../model/User");
 
 //  POST ad once voted on
@@ -7,46 +7,46 @@ const saveVote = async (req, res) => {
   let { user } = req.body;
 
   try {
+    // Log vote to user document to prevent duplicate ads
     const userCheck = await User.findOne({
       username: user,
     }).exec();
 
-    // if (vote === true) {
     userCheck.votes.push(ad.id);
-    // } else if (vote === false) {
-    //   userCheck.votes.push(ad);
-    // }
-    const result = await userCheck.save();
+    const saveUserResult = await userCheck.save();
 
-    const saveCheck = await Save.findOne({
+    const saveCheck = await Ad.findOne({
       ad: ad,
     }).exec();
 
-    let saveResult;
-
-    if (saveCheck && vote === true) {
-      saveCheck.votes.for.push(req.body.user);
-      saveResult = await saveCheck.save();
-    } else if (saveCheck && vote === false) {
-      saveCheck.votes.against.push(req.body.user);
-      saveResult = await saveCheck.save();
-    } else if (!saveResult) {
-      saveResult = await Save.create({
-        ad: req.body.vote.ad,
+    if (!saveCheck) {
+      const saveResult = await Ad.create({
+        ad: ad,
         votes: {
-          for: vote === true ? [req.body.user] : [],
-          against: vote === false ? [req.body.user] : [],
+          for: vote === true ? [user] : [],
+          against: vote === false ? [user] : [],
         },
       });
+      return res.status(200).json(saveResult);
     }
-    res.status(201).json(saveResult);
+
+    // If ad is already saved, update vote tally
+    if (saveCheck && vote === true) {
+      saveCheck.votes.for.push(user);
+      const saveResult = await saveCheck.save();
+    }
+    if (saveCheck && vote === false) {
+      saveCheck.votes.against.push(user);
+      const saveResult = await saveCheck.save();
+    }
+    return res.status(200).json(saveResult);
   } catch (err) {
-    console.error(err);
+    throw err;
   }
 };
 //  GET all ads the user has voted on
 const getAllSavedAds = async (req, res) => {
-  const savedAds = await Save.find();
+  const savedAds = await Ad.find();
   if (!savedAds)
     return res.status(204).json({ message: "No saved ads found." });
   res.json(savedAds);
@@ -55,7 +55,7 @@ const getAllSavedAds = async (req, res) => {
 //  PUT or update individual saved ad
 const updateVote = async (req, res) => {
   try {
-    const ad = await Save.findOne({ ad: req.body.ad }).exec();
+    const ad = await Ad.findOne({ ad: req.body.ad }).exec();
     if (!ad) {
       return res.status(204).json({ message: `No ad matches ${req.body.id}` });
     }
@@ -69,7 +69,7 @@ const updateVote = async (req, res) => {
 
 //  DELETE individual saved ad
 const deleteVote = async (req, res) => {
-  const result = await Save.deleteOne({ ad: req.body.ad });
+  const result = await Ad.deleteOne({ ad: req.body.ad });
   res.status(200).json(result);
 };
 
