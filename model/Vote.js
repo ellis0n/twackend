@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const voteSchema = new Schema({
-  ad: {
-    type: Object,
+  username: {
+    type: String,
     require: true,
   },
   votes: {
@@ -20,4 +20,4 @@ const voteSchema = new Schema({
   },
 });
 
-module.exports = mongoose.model("Ad", adSchema);
+module.exports = mongoose.model("Vote", voteSchema);

@@ -8,14 +8,14 @@ const adSchema = new Schema({
   },
   votes: {
     for: {
-      type: Array,
+      type: Number,
       require: true,
-      default: [],
+      default: 0,
     },
     against: {
-      type: Array,
+      type: Number,
       require: true,
-      default: [],
+      default: 0,
     },
   },
 });

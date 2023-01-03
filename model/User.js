@@ -20,11 +20,6 @@ const userSchema = new Schema({
       default: 0,
     },
   },
-  votes: {
-    type: Array,
-    require: true,
-    default: [],
-  },
   refreshToken: String,
 });
 

@@ -1,6 +1,7 @@
 const kijiji = require("kijiji-scraper");
 const Ad = require("../model/Ad");
 const User = require("../model/User");
+const Vote = require("../model/Vote");
 
 // Kijiji scraper functionality
 const scrapeAds = async (req, res) => {
@@ -10,8 +11,6 @@ const scrapeAds = async (req, res) => {
 };
 
 const scrape = async ({ params, user }) => {
-  // console.log(params);
-  // console.log(user);
   let adArray = [];
   try {
     const parameters = {
@@ -28,13 +27,18 @@ const scrape = async ({ params, user }) => {
       return scrapedAds;
     });
 
-    const findUser = await User.findOne({
+    const findVotes = await Vote.findOne({
       username: user,
     }).exec();
 
     for (let i = 0; i < ads.length; i++) {
       let ad = ads[i];
-      let check = findUser ? findUser.votes.includes(ad.id) : false;
+
+      let check = findVotes
+        ? findVotes.votes.for.includes(ad.id) ||
+          findVotes.votes.against.includes(ad.id)
+        : false;
+
       if (!check) {
         if (ad.image && ad.attributes.price && ad.description) {
           newAdObj = {

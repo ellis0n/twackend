@@ -1,4 +1,5 @@
 const User = require("../model/User");
+const Vote = require("../model/Vote");
 const bcrypt = require("bcrypt");
 
 const handleNewUser = async (req, res) => {
@@ -16,6 +17,13 @@ const handleNewUser = async (req, res) => {
     const result = await User.create({
       username: user,
       password: hashedPwd,
+    });
+    const voteResult = await Vote.create({
+      username: user,
+      votes: {
+        for: [],
+        against: [],
+      },
     });
 
     res.status(201).json({ success: `New user created: ${user}.` });
