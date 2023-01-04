@@ -6,27 +6,23 @@ const Vote = require("../model/Vote");
 const saveVote = async (req, res) => {
   let { vote, ad } = req.body.vote;
   let { user } = req.body;
-
   try {
-    // Add vote to user's vote history
+    //
     const findVotes = await Vote.findOne({
       username: user,
     }).exec();
 
+    // Add ad to user's vote history
     vote === true
       ? findVotes.votes.for.push(ad.id)
       : findVotes.votes.against.push(ad.id);
-
     const saveVoteResult = await findVotes.save();
 
-    // Check if ad is already saved in database
-    // If not, save it
-    // TODO: Use ad.isScraped to only check scraped ads from Kijiji when user content is added
-    // TODO: Only search for ad.id
-
+    // Check if ad is already saved
     const adCheck = await Ad.findOne({
       ad: ad,
     }).exec();
+
     // If ad is not saved, save it
     if (!adCheck) {
       const saveResult = await Ad.create({
@@ -38,6 +34,7 @@ const saveVote = async (req, res) => {
       });
       return res.status(200).json(saveResult);
     }
+
     // If ad is already saved, update vote tally
     if (adCheck && vote === true) {
       adCheck.votes.for += 1;
@@ -49,54 +46,42 @@ const saveVote = async (req, res) => {
       const saveResult = await adCheck.save();
       return res.status(200).json(saveResult);
     }
+
+    // Handle error
   } catch (err) {
     throw err;
   }
 };
-//  GET all ads the user has voted on
+
+// GET all saved ads
 const getAllSavedAds = async (req, res) => {
-  let userVotesArray = [];
-  // Find user from JWT
-  const user = await User.findOne({ refreshToken: req.cookies.jwt }).exec();
-  // Find user's votes
-  const userVotes = await Vote.findOne({ username: user.username }).exec();
-
-  let forVote = userVotes.votes.for;
-  let againstVote = userVotes.votes.against;
-  // console.log(forVote);
+  // Find user's vote history
   try {
-    forVote.forEach(async (vote) => {
-      try {
-        // console.log(vote);
-        const ad = await Ad.findOne({ id: vote }).exec();
-        ad.ad.vote = true;
-        // console.log(ad);
-        userVotesArray.push(ad.ad);
-      } catch (err) {
-        console.error(err);
+    const user = await User.findOne({ refreshToken: req.cookies.jwt }).exec();
+    const userVotes = await Vote.findOne({ username: user.username }).exec();
+    let forVote = userVotes.votes.for;
+    let againstVote = userVotes.votes.against;
+
+    // Find all ads that match user's vote history
+    const ads = await Ad.find({
+      id: { $in: [...forVote, ...againstVote] },
+    }).exec();
+
+    // Add vote property to each ad
+    const savedAds = ads.map((ad) => {
+      console.log(forVote);
+      console.log(ads);
+      if (forVote.includes(ad.ad.id)) {
+        return { ...ad.ad, vote: true };
+      } else {
+        return { ...ad.ad, vote: false };
       }
     });
-
-    againstVote.forEach(async (vote) => {
-      try {
-        const ad = await Ad.findOne({ id: vote }).exec();
-        ad.ad.vote = true;
-        userVotesArray.push(ad.ad);
-      } catch (err) {
-        console.error(err);
-      }
-    });
-    console.log(userVotesArray);
-
-    if (!userVotesArray) {
-      return res.status(204).json({ message: "No saved ads found." });
-    }
-
-    res.status(200).json(userVotesArray);
+    // Return all saved ads
+    res.json(savedAds);
   } catch (err) {
-    console.error(err);
+    throw err;
   }
-  console.log(userVotesArray);
 };
 
 //  PUT or update individual saved ad
