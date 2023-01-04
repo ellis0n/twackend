@@ -69,8 +69,6 @@ const getAllSavedAds = async (req, res) => {
 
     // Add vote property to each ad
     const savedAds = ads.map((ad) => {
-      console.log(forVote);
-      console.log(ads);
       if (forVote.includes(ad.ad.id)) {
         return { ...ad.ad, vote: true };
       } else {
@@ -86,14 +84,48 @@ const getAllSavedAds = async (req, res) => {
 
 //  PUT or update individual saved ad
 const updateVote = async (req, res) => {
+  let { vote, ad, user } = req.body;
+  console.log(req.body);
   try {
-    const ad = await Ad.findOne({ ad: req.body.ad }).exec();
-    if (!ad) {
+    const userVotes = await Vote.findOne({ user: user }).exec();
+    let hasVotedFor = userVotes.votes.for.includes(ad);
+    let hasVotedAgainst = userVotes.votes.against.includes(ad);
+    if (hasVotedFor) {
+      userVotes.votes.for = userVotes.votes.for.filter((id) => id !== ad);
+    } else if (hasVotedAgainst) {
+      userVotes.votes.against = userVotes.votes.against.filter(
+        (id) => id !== ad
+      );
+    }
+    if (vote === true) {
+      userVotes.votes.for.push(ad);
+    } else if (vote === false) {
+      userVotes.votes.against.push(ad);
+    }
+    // console.log(userVotes);
+    if (!userVotes) {
       return res.status(204).json({ message: `No ad matches ${req.body.id}` });
     }
-    ad.vote = req.body.vote;
-    const result = await ad.save();
-    res.status(200).json(result);
+    const save = await userVotes.save();
+
+    const adCheck = await Ad.findOne({
+      id: ad,
+    }).exec();
+
+    if (adCheck && vote === true) {
+      adCheck.votes.for += 1;
+      adCheck.votes.against -= 1;
+      const saveResult = await adCheck.save();
+      // return res.status(200).json(saveResult);
+    }
+    if (adCheck && vote === false) {
+      adCheck.votes.against += 1;
+      adCheck.votes.for -= 1;
+      const saveResult = await adCheck.save();
+      // return res.status(200).json(saveResult);
+    }
+
+    res.json(userVotes).status(200);
   } catch (err) {
     console.error(err);
   }
@@ -101,6 +133,8 @@ const updateVote = async (req, res) => {
 
 //  DELETE individual saved ad
 const deleteVote = async (req, res) => {
+  const user = await Vote.findOne({ user: req.body.user }).exec();
+  console.log(user);
   const result = await Ad.deleteOne({ ad: req.body.ad });
   res.status(200).json(result);
 };
