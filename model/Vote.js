@@ -1,23 +1,22 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const adSchema = new Schema({
-  ad: {
-    type: Object,
+const voteSchema = new Schema({
+  username: {
+    type: String,
     require: true,
   },
   votes: {
     for: {
-      type: Number,
+      type: Array,
       require: true,
-      default: 0,
+      default: [],
     },
     against: {
-      type: Number,
+      type: Array,
       require: true,
-      default: 0,
+      default: [],
     },
   },
 });
-
-module.exports = mongoose.model("Ad", adSchema);
+module.exports = mongoose.model("Vote", voteSchema);

@@ -22,7 +22,6 @@ connectDB();
 
 app.use(logger);
 
-
 // app.use(credentials);
 app.use(cors(corsOptions));
 // COOKIE MIDDLEWARE:
@@ -41,14 +40,13 @@ app.use("/register", require("./routes/api/register"));
 app.use("/auth", require("./routes/api/auth"));
 app.use("/logout", require("./routes/api/logout"));
 app.use("/refresh", require("./routes/api/refresh"));
-app.use("/pref", require("./routes/api/pref")); // TODO: users
 app.use(verifyJWT); // Everything below here requires user to be verified
-app.use("/vote", require("./routes/api/vote")); // TODO: auth
+app.use("/pref", require("./routes/api/pref"));
+app.use("/vote", require("./routes/api/vote"));
 app.use("/scrape", require("./routes/api/scrape"));
-app.use("/users", require("./routes/api/users")); // TODO: auth
+app.use("/users", require("./routes/api/users"));
 
 // app.use("/scrape", require("./routes/api/scrape"));
-
 
 // 404
 app.all("*", (req, res) => {
