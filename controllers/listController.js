@@ -22,7 +22,14 @@ const createList = async (req, res) => {
 	return res.status(201).json(list);
 };
 
+const deleteList = async (req, res) => {
+	const { id } = req.params;
+	await List.findByIdAndDelete(parseInt(id));
+	return res.status(200).json({ message: "List deleted" });
+};
+
 module.exports = {
 	getLists,
 	createList,
+	deleteList,
 };

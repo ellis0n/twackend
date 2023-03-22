@@ -4,4 +4,5 @@ const listController = require("../../controllers/listController");
 
 router.route("/").get(listController.getLists).post(listController.createList);
 
+router.route("/:id").delete(listController.deleteList);
 module.exports = router;
