@@ -8,14 +8,15 @@ const getLists = async (req, res) => {
 
 const createList = async (req, res) => {
 	console.log(req.body.user);
-	const { listName, listDescription, category, location } = req.body.newList;
-	console.log(listName, listDescription, category, location);
+	const { name, description, category, location } = req.body.newList;
+	console.log(name, description, category, location);
 	const list = new List({
 		user: req.body.user,
-		name: listName,
-		description: listDescription,
+		name: name,
+		description: description,
 		category: category,
 		location: location,
+		thumbnail: "",
 		ads: [],
 	});
 	await list.save();
@@ -23,8 +24,8 @@ const createList = async (req, res) => {
 };
 
 const deleteList = async (req, res) => {
-	const { id } = req.params;
-	await List.findByIdAndDelete(parseInt(id));
+	const { _id } = req.params;
+	await List.findByIdAndDelete(_id);
 	return res.status(200).json({ message: "List deleted" });
 };
 

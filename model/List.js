@@ -12,7 +12,7 @@ const listSchema = new Schema({
 	},
 	description: {
 		type: String,
-		require: false,
+		require: true,
 	},
 	location: {
 		type: String,
@@ -23,6 +23,16 @@ const listSchema = new Schema({
 		type: String,
 		require: true,
 		default: 0,
+	},
+	ads: {
+		type: Array,
+		require: false,
+		default: [],
+	},
+	thumbnail: {
+		type: String,
+		require: false,
+		default: "",
 	},
 });
 
