@@ -16,8 +16,7 @@ const updateUser = async (req, res) => {
 };
 
 const getUser = async (req, res) => {
-	const user = await User.findOne({ username: req.params.id });
-	console.log(req.params.id);
+	const user = await User.findOne({ username: req.params.user });
 	if (!user) return res.status(204).json({ message: "No user found" });
 	const safeUser = Object.assign(
 		{},
@@ -27,12 +26,6 @@ const getUser = async (req, res) => {
 		}
 	);
 	res.json(safeUser);
-};
-
-const getUserLists = async (req, res) => {
-	const user = await User.findOne({ username: req.params.id });
-	if (!user) return res.status(204).json({ message: "No user found" });
-	res.json(user.lists);
 };
 
 module.exports = { getAllUsers, updateUser, getUser };

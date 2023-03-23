@@ -7,7 +7,7 @@ const getLists = async (req, res) => {
 };
 
 const createList = async (req, res) => {
-	console.log(req.body.user);
+	console.log("create");
 	const { name, description, category, location } = req.body.newList;
 	console.log(name, description, category, location);
 	const list = new List({
@@ -28,9 +28,20 @@ const deleteList = async (req, res) => {
 	await List.findByIdAndDelete(_id);
 	return res.status(200).json({ message: "List deleted" });
 };
+const getUserLists = async (req, res) => {
+	const { user } = req.params;
+	const lists = await List.find({ user: user }).exec();
+	return res.status(200).json(lists);
+};
+
+const getUserList = async (req, res) => {
+	const { _id } = req.params;
+};
 
 module.exports = {
 	getLists,
 	createList,
 	deleteList,
+	getUserLists,
+	getUserList,
 };

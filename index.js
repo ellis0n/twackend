@@ -45,7 +45,7 @@ app.use("/pref", require("./routes/api/pref"));
 app.use("/vote", require("./routes/api/vote"));
 app.use("/scrape", require("./routes/api/scrape"));
 app.use("/users", require("./routes/api/users"));
-app.use("/lists", require("./routes/api/lists"));
+// app.use("/lists", require("./routes/api/lists"));
 
 // app.use("/scrape", require("./routes/api/scrape"));
 

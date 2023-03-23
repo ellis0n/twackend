@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const listController = require("../../controllers/listController");
+const listController = require("../../controllers/listsController");
 
 router.route("/").get(listController.getLists).post(listController.createList);
 
