@@ -10,6 +10,10 @@ router
 
 router.route("/:user").get(usersController.getUser);
 
+router.route("/:user/following").get(usersController.getFollowing);
+
+router.route("/:user/following/:_id").get(usersController.getFollowingById);
+
 router
 	.route("/:user/lists")
 	.get(listsController.getUserLists)
@@ -18,5 +22,8 @@ router
 router
 	.route("/:user/lists/:_id")
 	.get(listsController.getUserList)
-	.delete(listsController.deleteList);
+	.delete(listsController.deleteList)
+	.put(listsController.updateList)
+	.post(listsController.followList);
+
 module.exports = router;

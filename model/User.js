@@ -12,23 +12,17 @@ const userSchema = new Schema({
 		required: true,
 	},
 
-	pref: {
-		location: {
-			type: Number,
-			default: 0,
-		},
-		category: {
-			type: Number,
-			default: 0,
-		},
-	},
+	refreshToken: [String],
 
 	lists: {
 		type: Array,
 		default: [],
 	},
 
-	refreshToken: [String],
+	following: {
+		type: Array,
+		default: [],
+	},
 });
 
 module.exports = mongoose.model("User", userSchema);

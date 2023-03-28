@@ -40,9 +40,48 @@ const getUserLists = async (req, res) => {
 const getUserList = async (req, res) => {
 	const { _id } = req.params;
 	const listSearch = await List.findOne({ _id: _id }).exec();
-	console.log(listSearch);
 	if (!listSearch) return res.status(404).json({ message: "No list found" });
 	return res.status(200).json(listSearch);
+};
+
+const followList = async (req, res) => {
+	const { username } = req.body;
+	const { _id } = req.params;
+
+	console.log(username, _id);
+
+	const listSearch = await List.findOne({ _id: _id }).exec();
+	if (!listSearch) return res.status(404).json({ message: "No list found" });
+
+	const userSearch = await User.findOne({ username: username }).exec();
+	if (!userSearch) return res.status(404).json({ message: "No user found" });
+
+	const following = userSearch.following;
+
+	if (following.includes(_id)) {
+		// unfollow
+		const index = following.indexOf(_id);
+		if (index > -1) {
+			following.splice(index, 1);
+			console.log("unfollowing");
+		}
+	} else {
+		// follow
+		following.push(_id);
+		console.log("following");
+	}
+
+	await User.findOneAndUpdate(
+		{ username: username },
+		{ following: following },
+		{ new: true }
+	);
+
+	return res.status(200).json({ message: "Followed" });
+};
+
+const updateList = async (req, res) => {
+	console.log("update");
 };
 
 module.exports = {
@@ -51,4 +90,6 @@ module.exports = {
 	deleteList,
 	getUserLists,
 	getUserList,
+	followList,
+	updateList,
 };

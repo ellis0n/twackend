@@ -28,4 +28,27 @@ const getUser = async (req, res) => {
 	res.json(safeUser);
 };
 
-module.exports = { getAllUsers, updateUser, getUser };
+const getFollowing = async (req, res) => {};
+
+const getFollowingById = async (req, res) => {
+	// Search user model and get the following array of ids and return true or false if the id is in the array
+
+	const { user } = req.params;
+	const { _id } = req.params;
+	console.log(user, _id);
+
+	const userSearch = await User.findOne({ username: user }).exec();
+	if (!userSearch) return res.status(404).json({ message: "No user found" });
+
+	const following = userSearch.following;
+	const isFollowing = following.includes(_id);
+	res.json(isFollowing).status(200);
+};
+
+module.exports = {
+	getAllUsers,
+	updateUser,
+	getUser,
+	getFollowingById,
+	getFollowing,
+};
