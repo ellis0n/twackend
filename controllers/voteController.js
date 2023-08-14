@@ -1,24 +1,24 @@
 const Ad = require("../model/Ad");
+const List = require("../model/List");
 const User = require("../model/User");
 const Vote = require("../model/Vote");
 
 //  POST ad once voted on
 const saveVote = async (req, res) => {
 	console.log(req.body);
-	let { vote, ad } = req.body.vote;
+	let { vote, ad, listId } = req.body;
 	console.log(vote, ad);
-	let { user } = req.body;
-	console.log(user);
+	console.log(listId);
 	try {
 		//
-		const findVotes = await Vote.findOne({
-			username: user,
-		}).exec();
+		const list = await List.findById(listId).exec();
+
+		// const findLists = await List.findOne({
+		// 	username: user,
+		// }).exec();
 
 		// Add ad to user's vote history
-		vote === true
-			? findVotes.votes.for.push(ad.id)
-			: findVotes.votes.against.push(ad.id);
+		vote === true ? list.votes.for.push(ad.id) : list.votes.against.push(ad.id);
 		const saveVoteResult = await findVotes.save();
 
 		// Check if ad is already saved
@@ -35,6 +35,7 @@ const saveVote = async (req, res) => {
 					against: vote === false ? 1 : 0,
 				},
 			});
+			console.log("ad saved");
 			return res.status(200).json(saveResult);
 		}
 

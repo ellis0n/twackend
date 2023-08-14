@@ -84,6 +84,37 @@ const updateList = async (req, res) => {
 	console.log("update");
 };
 
+const addToList = async (req, res) => {
+	let { ad, listId } = req.body;
+	try {
+		const list = await List.findById(listId).exec();
+		if (!list) return res.status(404).json({ message: "No list found" });
+
+		// Check if Ad is already saved
+		const adCheck = await Ad.findOne({
+			ad: ad,
+		}).exec();
+
+		// If ad is not saved, 
+
+		if (!adCheck) {
+			const saveResult = await Ad.create({
+				ad: ad,
+				votes: {
+					for: vote === true ? 1 : 0,
+					against: vote === false ? 1 : 0,
+				},
+			});
+			console.log("ad saved");
+			return res.status(200).json(saveResult);
+		} else {
+			// If ad is saved, update votes
+			
+		 }
+
+	 }
+};
+
 module.exports = {
 	getLists,
 	createList,
