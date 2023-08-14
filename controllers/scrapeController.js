@@ -5,6 +5,7 @@ const Vote = require("../model/Vote");
 
 // Kijiji scraper functionality
 const scrapeAds = async (req, res) => {
+	console.log(req.body);
 	const ads = await scrape(req.body);
 	const jsonAds = JSON.stringify(ads);
 	return res.status(200).json(jsonAds);
@@ -20,7 +21,7 @@ const scrape = async ({ params, user }) => {
 		};
 
 		const options = {
-			minResults: 100,
+			minResults: 10,
 		};
 
 		const ads = await kijiji.search(parameters, options).then((scrapedAds) => {
