@@ -12,6 +12,8 @@ const scrapeAds = async (req, res) => {
 };
 
 const scrape = async ({ params, user }) => {
+	//TODO: Bring in listId, check the list for the ad, if it exists, don't return it. This is currently happening at the votes level, but it should be happening here instead.
+
 	let adArray = [];
 	try {
 		const parameters = {

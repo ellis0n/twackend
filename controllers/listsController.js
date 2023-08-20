@@ -1,5 +1,6 @@
 const List = require("../model/List");
 const User = require("../model/User");
+const Ad = require("../model/Ad");
 
 const getLists = async (req, res) => {
 	const lists = await List.find().exec();
@@ -85,7 +86,9 @@ const updateList = async (req, res) => {
 };
 
 const addToList = async (req, res) => {
-	let { ad, listId } = req.body;
+	// Extract ad and listId from request body
+	let { vote, ad, listId } = req.body;
+
 	try {
 		const list = await List.findById(listId).exec();
 		if (!list) return res.status(404).json({ message: "No list found" });
@@ -95,8 +98,7 @@ const addToList = async (req, res) => {
 			ad: ad,
 		}).exec();
 
-		// If ad is not saved, 
-
+		// If ad is not saved,
 		if (!adCheck) {
 			const saveResult = await Ad.create({
 				ad: ad,
@@ -106,19 +108,50 @@ const addToList = async (req, res) => {
 				},
 			});
 			console.log("ad saved");
-			return res.status(200).json(saveResult);
 		} else {
-			// If ad is saved, update votes
-			
-		 }
+			// If ad is already in DB, update votes
+			const updateResult = await Ad.findOneAndUpdate(
+				{ ad: ad },
+				{
+					votes: {
+						for: vote === true ? adCheck.votes.for + 1 : adCheck.votes.for,
+						against:
+							vote === false
+								? adCheck.votes.against + 1
+								: adCheck.votes.against,
+					},
+				}
+			);
+			console.log("ad updated");
+		}
 
-	 }
+		if (vote) {
+			// Check if ad is already in list
+			const adCheckInList = list.ads.some((a) => a.id === ad.id);
+			if (adCheckInList) {
+				// TODO: This should never run
+				return res.status(200).json({ message: "Ad already in list" });
+			} else {
+				// Add ad to list
+				list.ads.push(ad);
+				const saveListResult = await list.save();
+				console.log("list updated");
+				return res.status(200).json({ message: "Ad added to list" });
+			}
+		} else {
+			return res.status(200).json({ message: "Voted against" });
+		}
+	} catch (err) {
+		console.log(err);
+		return res.status(500).json({ message: "Internal server error" });
+	}
 };
 
 module.exports = {
 	getLists,
 	createList,
 	deleteList,
+	addToList,
 	getUserLists,
 	getUserList,
 	followList,

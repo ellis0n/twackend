@@ -28,10 +28,8 @@ const getUser = async (req, res) => {
 	res.json(safeUser);
 };
 
-const getFollowing = async (req, res) => {};
-
-const getFollowingById = async (req, res) => {
-	// Search user model and get the following array of ids and return true or false if the id is in the array
+const getFollowing = async (req, res) => {
+	// Retrieve all users that the user is following
 
 	const { user } = req.params;
 	const { _id } = req.params;
@@ -41,8 +39,28 @@ const getFollowingById = async (req, res) => {
 	if (!userSearch) return res.status(404).json({ message: "No user found" });
 
 	const following = userSearch.following;
-	const isFollowing = following.includes(_id);
-	res.json(isFollowing).status(200);
+	return res.json(following).status(200);
+};
+
+const getFollowingById = async (req, res) => {
+	//TODO: This function is half baked
+
+	const { user } = req.params;
+	const { _id } = req.params;
+	console.log(user, _id);
+
+	const userSearch = await User.findOne({ username: user }).exec();
+	if (!userSearch) return res.status(404).json({ message: "No user found" });
+
+	const following = userSearch.following;
+	const check = following.includes(_id);
+
+	if (check === true) {
+		const followedUser = await User.findOne({ _id: _id }).exec();
+		return res.json(followedUser).status(200);
+	} else {
+		return res.json(false).status(200);
+	}
 };
 
 module.exports = {
