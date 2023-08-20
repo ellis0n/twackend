@@ -5,64 +5,67 @@ const Vote = require("../model/Vote");
 
 // Kijiji scraper functionality
 const scrapeAds = async (req, res) => {
-  const ads = await scrape(req.body);
-  const jsonAds = JSON.stringify(ads);
-  return res.status(200).json(jsonAds);
+	console.log(req.body);
+	const ads = await scrape(req.body);
+	const jsonAds = JSON.stringify(ads);
+	return res.status(200).json(jsonAds);
 };
 
 const scrape = async ({ params, user }) => {
-  let adArray = [];
-  try {
-    const parameters = {
-      locationId: JSON.parse(params.location),
-      categoryId: JSON.parse(params.category),
-      sortByName: "dateAsc",
-    };
+	//TODO: Bring in listId, check the list for the ad, if it exists, don't return it. This is currently happening at the votes level, but it should be happening here instead.
 
-    const options = {
-      minResults: 20,
-    };
+	let adArray = [];
+	try {
+		const parameters = {
+			locationId: JSON.parse(params.location),
+			categoryId: JSON.parse(params.category),
+			sortByName: "dateAsc",
+		};
 
-    const ads = await kijiji.search(parameters, options).then((scrapedAds) => {
-      return scrapedAds;
-    });
+		const options = {
+			minResults: 10,
+		};
 
-    const findVotes = await Vote.findOne({
-      username: user,
-    }).exec();
+		const ads = await kijiji.search(parameters, options).then((scrapedAds) => {
+			return scrapedAds;
+		});
 
-    for (let i = 0; i < ads.length; i++) {
-      let ad = ads[i];
+		const findVotes = await Vote.findOne({
+			username: user,
+		}).exec();
 
-      let check = findVotes
-        ? findVotes.votes.for.includes(ad.id) ||
-          findVotes.votes.against.includes(ad.id)
-        : false;
+		for (let i = 0; i < ads.length; i++) {
+			let ad = ads[i];
 
-      if (!check) {
-        if (ad.image && ad.attributes.price && ad.description) {
-          newAdObj = {
-            id: ad.id,
-            img: ad.image,
-            //images: ad.images
-            title: ad.title.toUpperCase(),
-            price: ad.attributes.price,
-            url: ad.url,
-            desc: ad.description,
-            date: ad.date,
-            location: ad.attributes.location,
-            isScraped: ad.isScraped(),
-          };
-          adArray.push(newAdObj);
-        }
-      }
-    }
-  } catch (err) {
-    throw err;
-  }
-  return adArray;
+			let check = findVotes
+				? findVotes.votes.for.includes(ad.id) ||
+				  findVotes.votes.against.includes(ad.id)
+				: false;
+
+			if (!check) {
+				if (ad.image && ad.attributes.price && ad.description) {
+					newAdObj = {
+						id: ad.id,
+						img: ad.image,
+						images: ad.images,
+						title: ad.title.toUpperCase(),
+						price: ad.attributes.price,
+						url: ad.url,
+						desc: ad.description,
+						date: ad.date,
+						location: ad.attributes.location,
+						isScraped: ad.isScraped(),
+					};
+					adArray.push(newAdObj);
+				}
+			}
+		}
+	} catch (err) {
+		throw err;
+	}
+	return adArray;
 };
 
 module.exports = {
-  scrapeAds,
+	scrapeAds,
 };
