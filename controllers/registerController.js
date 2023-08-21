@@ -1,5 +1,4 @@
 const User = require("../model/User");
-const Vote = require("../model/Vote");
 const bcrypt = require("bcrypt");
 
 const handleNewUser = async (req, res) => {
@@ -19,7 +18,7 @@ const handleNewUser = async (req, res) => {
 			username: user,
 			password: hashedPwd,
 		});
-		console, log("new user registered - ", result);
+		console.log("new user registered - ", result);
 		res.status(201).json({ success: `New user created: ${user}.` });
 	} catch (err) {
 		console.log(err);
