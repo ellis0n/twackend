@@ -5,7 +5,7 @@ const allowedOrigins = [
 	"http://localhost:3000",
 	"https://twackend-b59mi.ondigitalocean.app/",
 	"https://ellis0n.github.io",
-	"https://jellyfish-app-mrhvv.ondigitalocean.app/",
+	"https://jellyfish-app-mrhvv.ondigitalocean.app",
 ];
 
 module.exports = allowedOrigins;
