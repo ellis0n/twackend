@@ -8,9 +8,7 @@ const getLists = async (req, res) => {
 };
 
 const createList = async (req, res) => {
-	console.log("create");
 	const { name, description, category, location } = req.body.newList;
-	console.log(name, description, category, location);
 	const list = new List({
 		user: req.body.user,
 		name: name,
@@ -49,8 +47,6 @@ const followList = async (req, res) => {
 	const { username } = req.body;
 	const { _id } = req.params;
 
-	console.log(username, _id);
-
 	const listSearch = await List.findOne({ _id: _id }).exec();
 	if (!listSearch) return res.status(404).json({ message: "No list found" });
 
@@ -64,12 +60,10 @@ const followList = async (req, res) => {
 		const index = following.indexOf(_id);
 		if (index > -1) {
 			following.splice(index, 1);
-			console.log("unfollowing");
 		}
 	} else {
 		// follow
 		following.push(_id);
-		console.log("following");
 	}
 
 	await User.findOneAndUpdate(
@@ -82,11 +76,10 @@ const followList = async (req, res) => {
 };
 
 const updateList = async (req, res) => {
-	console.log("update");
+	//placeholder
 };
 
 const addToList = async (req, res) => {
-	// Extract ad and listId from request body
 	let { vote, ad, listId } = req.body;
 
 	try {
@@ -107,7 +100,6 @@ const addToList = async (req, res) => {
 					against: vote === false ? 1 : 0,
 				},
 			});
-			console.log("ad saved");
 		} else {
 			// If ad is already in DB, update votes
 			const updateResult = await Ad.findOneAndUpdate(
@@ -122,7 +114,6 @@ const addToList = async (req, res) => {
 					},
 				}
 			);
-			console.log("ad updated");
 		}
 
 		if (vote) {

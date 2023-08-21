@@ -22,7 +22,7 @@ connectDB();
 
 app.use(logger);
 
-// app.use(credentials);
+app.use(credentials);
 app.use(cors(corsOptions));
 // COOKIE MIDDLEWARE:
 app.use(cookieParser());
@@ -66,6 +66,6 @@ app.use(errorHandler);
 
 // Open connection to DB
 mongoose.connection.once("open", () => {
-	console.log("Connected to MongoDB database.");
+	console.log("Connected to database.");
 	app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 });

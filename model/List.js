@@ -29,6 +29,11 @@ const listSchema = new Schema({
 		require: false,
 		default: [],
 	},
+	followers: {
+		type: Array,
+		require: false,
+		default: [],
+	},
 	thumbnail: {
 		type: String,
 		require: false,
