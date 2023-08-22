@@ -6,7 +6,6 @@ const allowedOrigins = [
 	"https://twackend-b59mi.ondigitalocean.app",
 	"https://ellis0n.github.io",
 	"https://jellyfish-app-mrhvv.ondigitalocean.app",
-	"https://jellyfish-app-mrhvv.ondigitalocean.app/register",
 ];
 
 module.exports = allowedOrigins;
