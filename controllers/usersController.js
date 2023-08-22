@@ -1,4 +1,5 @@
 const User = require("../model/User");
+const List = require("../model/List");
 
 // this function is used to get all users from the database
 // it is used in the route /api/users
@@ -35,11 +36,14 @@ const getFollowing = async (req, res) => {
 	const { _id } = req.params;
 	console.log(user, _id);
 
-	const userSearch = await User.findOne({ username: user }).exec();
-	if (!userSearch) return res.status(404).json({ message: "No user found" });
+	const getFollowing = await User.findOne({ username: user }).exec();
+	if (!getFollowing) return res.status(404).json({ message: "No user found" });
 
-	const following = userSearch.following;
-	return res.json(following).status(200);
+	const following = getFollowing.following;
+
+	const followingLists = await List.find({ _id: { $in: following } }).exec();
+
+	return res.json(followingLists).status(200);
 };
 
 const getFollowingById = async (req, res) => {
