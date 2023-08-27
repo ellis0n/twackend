@@ -6,7 +6,6 @@ const List = require("../model/List");
 
 // Kijiji scraper functionality
 const scrapeAds = async (req, res) => {
-	console.log(req.body);
 	const ads = await scrape(req.body);
 	const jsonAds = JSON.stringify(ads);
 	return res.status(200).json(jsonAds);
@@ -26,15 +25,14 @@ const scrape = async ({ params, user }) => {
 
 		//TODO: Make this a user preference passed in per request
 		const options = {
-			minResults: 10,
+			minResults: 100,
 		};
 
 		const ads = await kijiji.search(parameters, options).then((scrapedAds) => {
 			return scrapedAds;
 		});
-
 		const list = await List.findOne({
-			listId: params.listId,
+			_id: params.listId,
 		}).exec();
 
 		// Filter ads to only include those that have not been included in the list
@@ -44,7 +42,7 @@ const scrape = async ({ params, user }) => {
 			// Check if list already contains ad
 			const check = list.ads.some((a) => a.id === ad.id);
 
-			// If ad has not been voted, add it to the returned array
+			// If list does not contain ad, add it to the list
 			if (!check) {
 				if (ad.image && ad.attributes.price && ad.description) {
 					newAdObj = {
@@ -61,6 +59,8 @@ const scrape = async ({ params, user }) => {
 					};
 					adArray.push(newAdObj);
 				}
+			} else {
+				console.log("Ad already in list");
 			}
 		}
 	} catch (err) {
